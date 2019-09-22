@@ -534,10 +534,13 @@ class Welcome extends CI_Controller {
 		}
 	}
 	public function migration_process($id=0){
-
-
-
 		$data = $this->general();
+		$T_table_list = $this->session->userdata('target_table_lists');
+		$data['schema']=$this->public_model->get_job_schema($id);
+		$data['tables']=$this->public_model->get_job_tables($id);
+		$data['target']=$this->public_model->get_job_target($id);
+		$data['Table_Details'] = [];
+		//print_r($this->session->userdata());exit;
 		if($id){
 			$res = $this->public_model->getJobList($id);
 			if(!empty($res[0]['j_name'])){
@@ -575,28 +578,40 @@ class Welcome extends CI_Controller {
 				't_schema' =>$this->session->userdata('t_schema'),
 				'status' => 'completed',
 			 );
-
 			$this->public_model->insertJobList($job_data, $this->session->userdata('job_id'));
-
 			}
 		}
-
-		
-
 		$data['config']=$this->public_model->get_job_config($id);
-		$T_table_list = $this->session->userdata('target_table_lists');
-		//print_r($T_table_list);exit;
-		foreach($data['config'] as $row ){
-			$jobdata = array(
-				'jobname' =>$row['job_name'],
-				'job_id'=>$id,
-				'conn_name'=> $row['name']		
-			);
-		$this->session->set_userdata($jobdata);
+		$conn=$this->session->userdata('connection');
+		$user_name = $this->session->userdata('user_name');
+		$password = $this->session->userdata('password');
+		$database_list = $this->session->userdata('db_list_name');
+		$schema_name = $this->session->userdata('schema');
+		if($this->input->post('schema'))
+		{
+			$schema = $this->input->post('schema');
+			$schema_n = explode('.',$schema);
+			$schema_nam = $schema_n[0];
+			$table = $this->input->post('table');
+			//echo $schema_nam.' - '.$table;exit;
+			$x = odbc_connect($conn,$user_name,$password);
+			if($database_list == 'Oracle'){
+				$sql = "select col.column_id, 
+				col.owner as schema_name, col.table_name, col.column_name, col.data_type from sys.all_tab_columns col
+				 inner join sys.all_tables t on col.owner = t.owner and col.table_name = t.table_name where col.owner = '$schema_nam' 
+				 and col.table_name = '$table' order by col.column_id;";
+			}else if($database_list == 'Amazon RedShift'){
+				$sql = "select table_name, column_name, data_type from information_schema.columns
+		 				where table_name = '$table' and table_schema = '$schema_nam' order by ordinal_position;";
+			}
+			$query = odbc_exec($x, $sql);
+			while ($d = odbc_fetch_array($query)) {
+				$arrReturn[] = $d;
+			}
+			//print_r($arrReturn);exit;
+			$data['Table_Details'] = $arrReturn;
 		}
-		$data['schema']=$this->public_model->get_job_schema($id);
-		$data['tables']=$this->public_model->get_job_tables($id);
-		$data['target']=$this->public_model->get_job_target($id);
+		$data['database_list'] = $database_list;
 		$data['table_names'] = $T_table_list;
 		$data['pagename']='migration_process';
 		$data['body']='static/migration_process';

@@ -43,7 +43,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         buttons: [{ label: 'Add', action: 'add' }, {label: 'AddAll', action: 'addAll' }, { action: 'remove', label: 'Remove', className: 'btn btn-sm btn-block btn-info' }, { label: 'RemoveAll', action: 'removeAll' }],
         buttonClass: 'btn btn-sm btn-block btn-primary',
         label: {
-            content: ['Available:', 'Selected:']
+            content: ['Available', 'Selected']
         },
         select: {
             size: 15
