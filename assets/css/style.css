@@ -23,7 +23,7 @@ a.nav-link {float: left;text-align: center;padding: 10px;color: white;text-decor
 .card {border: 0 solid !important;border-bottom: 1px solid rgba(0,0,0,.125);box-shadow: none;background: inherit;}
 .navbar_style{background-color:#175695 !important;}
 .card-body{padding: 0 !important;}
-.btn-danger, .btn-success, .bg-danger, .selected{background-color: #1675bc !important;border: none !important;color: #fff !important;}
+.btn-danger, .btn-success, .bg-danger, .selected{background-color: #1675ca !important;border: none !important;color: #fff !important;padding:10px;margin:auto;font-weight:bold;}
 .text-danger{color: #1675bc !important;}
 i{color: #1675bc !important;font-size: 18px !important;}
 .source-footer .btn:hover{background-color: #1675bc !important;border: 1px solid #fff;}
@@ -42,11 +42,10 @@ nav h2{color:#fff;}
 .picklist select{display:block;height:100vh !important;}
 .picklist .select {height:80vh;}
 .dropdown-item{cursor:pointer !important;}
-#getConModal .modal-dialog{max-width:35%;}
 .btn-link{background:#1675c3 !important;}
 .card-header{background:#1675c3 !important;}
 .W_none{display:none;}
-
+#mCSB_1_scrollbar_vertical{display:none !important;}
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {font-family: 'Poppins', sans-serif;background: #fafafa;}

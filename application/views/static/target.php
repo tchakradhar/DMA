@@ -26,7 +26,7 @@
     </div>
 </div>
 <div id="getConModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog custom-modeal-body" role="document">
+    <div class="modal-dialog modal-lg custom-modeal-body" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="exampleModalLabel">Choose Connection</h3>
@@ -50,22 +50,22 @@ function get_connection(id)
 {
   $("#getConModal").modal('show');
   var data='   <div class="row">';
-  data+='<div class="col"><h6>Host Name</h6></div><div class="col"><h6>Port</h6></div><div class="col"><h6>Username</h6></div><div class="col"><h6>Action</h6></div></div>';
+  data+='<div class="col col-md-2"><h6>Connection Name</h6></div><div class="col col-md-4"><h6>Host Name</h6></div><div class="col col-md-2"><h6>Port</h6></div><div class="col col-md-2"><h6>Username</h6></div><div class="col col-md-2"><h6>Action</h6></div></div>';
          $.ajax({
             url: weblink + "get_connection_data/"+id,
             type:"GET",
             datatype:"json",
-            // data: {'id': schemaList },
             success:function(result){
                 var d= JSON.parse(result);
                 for(var i=0;i<d.length;i++)
                 {
-                data+='<div class="row mt-1">';
-                data+='<div class="col">'+d[i].hosturl+'</div>';
-                data+='<div class="col">'+d[i].port+'</div>';
-                data+='<div class="col">'+d[i].userid+'</div>';
-                data+='<div class="col"><a onclick="return Check_Conn('+d[i].id+','+id+')" class="btn btn-success">Connect</a></div>';
-                data+='</div>';
+                    data+='<div class="row mt-1">';
+                    data+='<div class="col-md-2 col">'+d[i].name+'</div>';
+                    data+='<div class="col-md-4">'+d[i].hosturl+'</div>';
+                    data+='<div class="col-md-2 col">'+d[i].port+'</div>';
+                    data+='<div class="col-md-2 col">'+d[i].userid+'</div>';
+                    data+='<div class="col-md-2 col"><a onclick="return Check_Conn('+d[i].id+','+id+')" class="btn btn-success">Connect</a></div>';
+                    data+='</div>';
                 }
                 $("#parent").html(data);
                 console.log(result);

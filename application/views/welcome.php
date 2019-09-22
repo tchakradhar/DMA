@@ -190,6 +190,72 @@ $(function () {
 	});
 });
 </script>
+<?php } if($pagename == "TargetSchemaList"){ ?>
+<script type="text/javascript">
+$(function () {
+	$('.select.selected').find('select').attr('id','schema_select');
+	$.ajax({
+		url: weblink + "target-schema-lists/",
+		type:"GET",
+		datatype:"json",
+		success:function(result){
+			result = JSON.parse(result);
+			//localStorage.setItem("selected_schemas",result);
+			//console.log(localStorage.getItem("selected_schemas"));
+			console.log(result);
+			if(result.status == 'success'){
+				var data = {
+	                available: result.data,
+	                selected: []
+	            };
+	            // var selVal = '';
+	            // result.schema_selected.forEach(function(currentValue, index, arr){
+	            //     	if(!selVal) {
+	            //     	selVal = currentValue.id; 
+	            //     	} else {
+	            //     	selVal = selVal + ',' + currentValue.id;
+	            //     	}
+	            //     });
+	            // document.getElementById("schema_list").value = selVal;
+	            var a = $('#list').pickList({
+	                data: data,
+	            });
+	            $('#button').on('click', function () {
+	                console.log(a.pickList('getSelected'));
+	            });
+	            a.on('picklist.remove', function (event, v) {
+	                console.log(v);
+
+	                // var selVal = "";
+	                // v.forEach(function(currentValue, index, arr){
+	                // 	if(!selVal) {
+	                // 	selVal = currentValue.id; 
+	                // 	} else {
+	                // 	selVal = selVal + ',' + currentValue.id;
+	                // 	}
+	                // });
+	                //   document.getElementById("schema_list").value = selVal;
+	                // console.log(selVal);
+	            });
+	            a.on('picklist.add', function (event, v) {
+	                console.log(v);
+	                // var selVal = "";
+	                // v.forEach(function(currentValue, index, arr){
+	                // 	console.log(currentValue);
+	                // 	if(!selVal) {
+	                // 	selVal = currentValue.id; 
+	                // 	} else {
+	                // 	selVal = selVal + ',' + currentValue.id;
+	                // 	}
+	                // });
+	                //   document.getElementById("schema_list").value = selVal;
+	                // console.log(selVal);
+	            });
+			}		 	
+		}
+	});
+});
+</script>
 <?php } ?>
 <?php //print_r( $this->session->userdata());?>
 </body>

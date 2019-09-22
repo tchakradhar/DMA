@@ -188,11 +188,30 @@ class Welcome extends CI_Controller {
 			$userid = $r['userid'];
 			$password = $r['password'];
 			$database_name = $r['database_name'];
+			$database_list = $r['snow_flake'];
 			$warehouse = $r['warehouse'];
 		}
 		$conn = "Driver={CData ODBC Driver for Snowflake};url=$host;warehouse=$warehouse;Database=$database_name;";
+		$jobdata = array(
+			't_connection' 	=>$conn,
+			't_host' 			=>$host,
+			't_port'			=>$port,
+			't_user_name'		=>$userid,
+			't_password'		=>$password,
+			't_warehouse'		=>$warehouse,
+			't_database_list'	=>$database_list,
+			't_database_name'	=>$database_name,
+			't_schema'			=>'PUBLIC'
+		);
 		$x = odbc_connect($conn,$userid,$password);
-		if($x){echo 'success';} else {echo 'failed';}
+		// $sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = 'TEST_DB' AND TABLE_SCHEMA = 'PUBLIC'";
+		// $query = odbc_exec($x, $sql);
+		// while ($d = odbc_fetch_array($query)) {
+		// 	$arrReturn[] = $d['TABLE_NAME'];
+		// }
+		//$this->session->set_userdata('target_table_lists',$arrReturn);
+	   $this->session->set_userdata($jobdata);
+		if($x){echo 'success';} else {echo 'failed';}	
 	}
 	function config()
 	{
@@ -255,8 +274,18 @@ class Welcome extends CI_Controller {
 		} else {
 			redirect('/create-job');
 		}
-		
 		$data['pagename']='SchemaList';
+		$data['body']='static/schema';
+		$this->load->view('welcome',$data);
+	}
+	function target_schema_list($id = 0)
+	{
+		$data = $this->general();
+		if($id){
+		} else {
+			redirect('/target');
+		}
+		$data['pagename']='TargetSchemaList';
 		$data['body']='static/schema';
 		$this->load->view('welcome',$data);
 	}
@@ -278,6 +307,34 @@ class Welcome extends CI_Controller {
 		$this->session->set_userdata('tables',json_encode($tables));
 		$this->session->set_userdata('selected_tables',json_encode($selected_tables));
 	}
+	// function Target_Schema_Lists()
+	// {
+	// 	$session = $this->session->userdata();
+	// 	$conn=$this->session->userdata('connection');
+	// 	$user_name = $this->session->userdata('user_name');
+	// 	$password = $this->session->userdata('password');
+	// 	$database_list = $this->session->userdata('db_list_name');
+	// 	$x = odbc_connect($conn,$user_name,$password);
+	// 	$sql = 'SHOW SCHEMAS';
+	// 	$query = odbc_exec($x, $sql);
+	// 	while ($d = odbc_fetch_array($query)) {
+	// 		$arrReturn[] = $d;
+	// 	}
+	// 	$schema_lists = array();
+	// 	foreach($arrReturn as $schema)
+	// 	{
+	// 		$data = array();
+	// 		$data['id'] = $schema['USERNAME'];
+	// 		$data['label'] = $schema['USERNAME'];
+	// 		array_push($schema_lists, $data);
+	// 	}
+	// 	$this->session->set_userdata('target_schema_lists',json_encode($schema_lists));
+	// 	$rec = array();
+	// 	$rec['status'] = "success";
+	// 	$rec['code'] = "1001";
+	// 	$rec['data'] = $schema_lists;
+	// 	echo json_encode($rec);
+	// }
 	function Schema_Lists()
 	{
 		$session = $this->session->userdata();
@@ -428,6 +485,8 @@ class Welcome extends CI_Controller {
 	public function migration_process($id){
 		$data = $this->general();
 		$data['config']=$this->public_model->get_job_config($id);
+		$T_table_list = $this->session->userdata('target_table_lists');
+		//print_r($T_table_list);exit;
 		foreach($data['config'] as $row ){
 			$jobdata = array(
 				'jobname' =>$row['job_name'],
@@ -439,6 +498,7 @@ class Welcome extends CI_Controller {
 		$data['schema']=$this->public_model->get_job_schema($id);
 		$data['tables']=$this->public_model->get_job_tables($id);
 		$data['target']=$this->public_model->get_job_target($id);
+		$data['table_names'] = $T_table_list;
 		$data['pagename']='migration_process';
 		$data['body']='static/migration_process';
 		$this->load->view('welcome',$data);
