@@ -257,6 +257,8 @@ $(function () {
 });
 </script>
 <?php } ?>
-<?php //print_r( $this->session->userdata());?>
+<?php
+
+// print_r( $this->session->userdata());?>
 </body>
 </html>

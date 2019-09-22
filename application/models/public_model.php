@@ -5,6 +5,24 @@ class Public_model extends CI_Model {
 	{
 		parent::__construct();
 	}
+   function insertJobList($data ,$job_id){
+
+    $this->db->where('joblistid', $job_id);
+    $this->db->update('joblist', $data);
+    return 1;
+  }
+
+  function getJobDetails(){
+    $query="SELECT * FROM `joblist` where status = 'completed' ";
+    $ex=$this->db->query($query);
+    return $ex->result_array();
+  }
+  function getJobList($id){
+    $query="SELECT * FROM `joblist` where status = 'completed' and joblistid = $id ";
+    $ex=$this->db->query($query);
+    return $ex->result_array();
+  }
+
 	function clear_status(){
     $s="UPDATE  `source` SET status=0";
     $this->db->query($s);
@@ -192,11 +210,11 @@ class Public_model extends CI_Model {
     return $ex->result_array();
   }
   function new_create_job($job_name){
-    $sql = "INSERT INTO `create_job` (`job_name`,`status`) VALUES ('$job_name','process') ";
+    $sql = "INSERT INTO `joblist` (`j_name`,`status`) VALUES ('$job_name','process') ";
      $ex=$this->db->query($sql);
   }
   function get_job_data(){
-    $sql="SELECT * from create_job order by id desc";
+    $sql="SELECT * from joblist order by joblistid desc";
      $ex=$this->db->query($sql);
      return $ex->result_array();
   }

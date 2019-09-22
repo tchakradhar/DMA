@@ -10,7 +10,7 @@
             <table class="table mb-1" id="schema_list">
                 <tbody>
                     <?php foreach ($rec as $row) { ?>
-                    <tr class="<?php if($row['status'] == 1){ echo 'selected'; }?>">
+                    <tr class="<?php if($this->session->userdata('t_database_list') == $row['snow_flake']){ echo 'selected'; }?>">
                         <td onclick="get_connection(<?= $row['id'] ?>);"><?= $row['snow_flake'] ?></td>
                     </tr>
                     <?php } ?>
@@ -19,7 +19,7 @@
             </div>
             <div class="source-footer bg-danger">
                 <div class="row source-footer bg-00b0cc align-items-center justify-content-end pr-5 pb-0 pt-0 mb-1">
-            <a  class="text-decoration-none btn bg-087486 text-light" href="<?php echo base_url();?>migration-process/<?php echo $this->session->userdata('job_id'); ?>">Next </a>
+            <a  class="text-decoration-none btn bg-087486 text-light" href="<?php echo base_url();?>migration-process">Next </a>
         </div>
             </div>
         </div>
