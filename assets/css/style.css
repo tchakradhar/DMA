@@ -46,6 +46,9 @@ nav h2{color:#fff;}
 .card-header{background:#1675c3 !important;}
 .W_none{display:none;}
 #mCSB_1_scrollbar_vertical{display:none !important;}
+#mCSB_1_container{top:0px !important;}
+.table_view{display:none;}
+.migrate_button{background:none;border:none;text-decoration:underline;cursor:pointer}
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {font-family: 'Poppins', sans-serif;background: #fafafa;}
