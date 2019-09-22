@@ -10,7 +10,7 @@
             <table class="table mb-1" id="schema_list">
                 <tbody>
                     <?php foreach ($rec as $row) { ?>
-                    <tr class="<?php if($row['status'] == 1){ echo 'selected'; }?>">
+                    <tr class="<?php if($this->session->userdata('db_list_name') == $row['database_list']){ echo 'selected'; }?>">
                         <td onclick="get_connection(<?= $row['id'] ?> );"><?= $row['database_list'] ?></td>
                     </tr>
                     <?php } ?>
@@ -50,7 +50,7 @@
     </div>
 </div>
 <div id="getConModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog custom-modeal-body" role="document">
+    <div class="modal-dialog modal-lg custom-modeal-body" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="exampleModalLabel">Choose Connection</h3>

@@ -12,6 +12,7 @@ class Welcome extends CI_Controller {
 		$data['tables']=$this->public_model->get_tables_preview();
 		$data['target']= $this->public_model->get_target_preview();
 		$data['job_list']= $this->public_model->get_job_list();
+		$data['job_details']= $this->public_model->getJobDetails();
 		return $data;
 	}
 	public function index()
@@ -26,7 +27,7 @@ class Welcome extends CI_Controller {
 	public function migration($sel = '')
 	{
 		$data = $this->general();
-		 $this->session->sess_destroy();
+		//  $this->session->sess_destroy();
 		$data['rec']= $this->public_model->clear_status();
 		$data['pagename']='migration';
 		$data['result']='';
@@ -48,24 +49,37 @@ class Welcome extends CI_Controller {
 		$data = $this->general();
 		$data['selected_id'] = 0;
 		$data['connect_db'] =[];
-		$user_session_items = array(
-            'connection' 	=>'',
-			'host' 			=>'',
-			'port'			=>'',
-			'user_name'		=>'',
-			'password'		=>'',
-			'database_name'	=>'',
-			'db_list_name'	=>'',
-			'schemas'		=>'',
-			'conn_name' 	=> '',
-    		'schema_lists' 	=>  '',
-			'schemas' 		=>  '',
-    		'selected_schemas' =>  '',
-    		'table_lists' 	=>  '',
-    		'tables' 		=>  '',
-    		'selected_tables' => ''
-        );
-		$this->session->unset_userdata($user_session_items);
+		// $user_session_items = array(
+        //     'connection' ,
+		// 	'host' 		,
+		// 	'port'			,
+		// 	'user_name'		,
+		// 	'password'		,
+		// 	'database_name',
+		// 	'db_list_name'	,
+		// 	'schemas'		,
+		// 	'conn_name' 	,
+    	// 	'schema_lists' 	,
+		// 	'schemas' 		,
+    	// 	'selected_schemas' ,
+    	// 	'table_lists' 	,
+    	// 	'tables' 		,
+		// 	'selected_tables' ,
+		// 	't_connection' 	,
+		// 	't_host' 		,
+		// 	't_port'		,
+		// 	't_user_name'		,
+		// 	't_password'		,
+		// 	't_warehouse'		,
+		// 	't_database_list'	,
+		// 	't_database_name'	,
+		// 	't_schema'			,
+		// 	't_name',
+		// 	'jobname',
+		// 			'job_id',
+        //             'status'
+        // );
+		// $this->session->unset_userdata($user_session_items);
 		if(!empty($id) && !empty($c_id))
 		{
 			$res = $this->public_model->get_conn_info($c_id);
@@ -99,7 +113,8 @@ class Welcome extends CI_Controller {
 				'user_name'		=>$userid,
 				'password'		=>$password,
 				'database_name'	=>$database_name,
-				'db_list_name'	=>$database_list
+				'db_list_name'	=>$database_list,
+				'conn_name' => $name
 			);
 		   $this->session->set_userdata($jobdata);
 		}
@@ -108,15 +123,15 @@ class Welcome extends CI_Controller {
 			$this->public_model->set_schema_update($id);
 			$data['connect_db'] = $this->public_model->get_db_config($id);
 		}
-		if($id && $c_id){
-			$data['selected_id'] = $id;		
-			$this->public_model->set_schema_update($id);
-			$res_conn = $this->public_model->update_db_config($c_id,$this->session->userdata('job_id'));
-			$jobdata = array(
-				'conn_name' =>$res_conn[0]['name']				
-			);
-		   $this->session->set_userdata($jobdata);
-		}
+		// if($id && $c_id){
+		// 	$data['selected_id'] = $id;		
+		// 	$this->public_model->set_schema_update($id);
+		// 	$res_conn = $this->public_model->update_db_config($c_id,$this->session->userdata('job_id'));
+		// 	$jobdata = array(
+		// 		'conn_name' =>$res_conn[0]['name']				
+		// 	);
+		//    $this->session->set_userdata($jobdata);
+		// }
 		$data['rec']= $this->public_model->get_dbnames_source();
 		foreach ($data['rec'] as $key => $value) {
 			if($value['status'] == 1){
@@ -201,7 +216,8 @@ class Welcome extends CI_Controller {
 			't_warehouse'		=>$warehouse,
 			't_database_list'	=>$database_list,
 			't_database_name'	=>$database_name,
-			't_schema'			=>'PUBLIC'
+			't_schema'			=>'PUBLIC',
+			't_name'=> $name
 		);
 		$x = odbc_connect($conn,$userid,$password);
 		// $sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = 'TEST_DB' AND TABLE_SCHEMA = 'PUBLIC'";
@@ -337,7 +353,9 @@ class Welcome extends CI_Controller {
 	// }
 	function Schema_Lists()
 	{
+		
 		$session = $this->session->userdata();
+		// print_r($session);exit;
 		$conn=$this->session->userdata('connection');
 		$user_name = $this->session->userdata('user_name');
 		$password = $this->session->userdata('password');
@@ -468,22 +486,103 @@ class Welcome extends CI_Controller {
 	}
 	public function new_crete_job()
 	{
+		
+		// $this->session->sess_destroy();
+		$user_session_items = array(
+			    'connection' ,
+				'host' 		,
+				'port'			,
+				'user_name'		,
+				'password'		,
+				'database_name',
+				'db_list_name'	,
+				'schemas'		,
+				'conn_name' 	,
+				'schema_lists' 	,
+				'schemas' 		,
+				'selected_schemas' ,
+				'table_lists' 	,
+				'tables' 		,
+				'selected_tables' ,
+				't_connection' 	,
+				't_host' 		,
+				't_port'		,
+				't_user_name'		,
+				't_password'		,
+				't_warehouse'		,
+				't_database_list'	,
+				't_database_name'	,
+				't_schema'			,
+				't_name',
+				'jobname',
+						'job_id',
+			            'status'
+			);
+			$this->session->unset_userdata($user_session_items);
 		if($this->input->post('submit'))
 		{
 			$job_name=$this->input->post('job_name');
 			$this->public_model->new_create_job($job_name);
 			$x= $this->public_model->get_job_data();
 			 	$jobdata = array(
-                    'jobname' =>$x[0]['job_name'],
-					'job_id'=>$x[0]['id'],
-                    'status'=>'process'      
+                    'jobname' =>$x[0]['j_name'],
+					'job_id'=>$x[0]['joblistid'],
+                    'status'=>$x[0]['status']      
                 );
                $this->session->set_userdata($jobdata);
 			redirect('/create-job');
 		}
 	}
-	public function migration_process($id){
+	public function migration_process($id=0){
+
+
+
 		$data = $this->general();
+		if($id){
+			$res = $this->public_model->getJobList($id);
+			if(!empty($res[0]['j_name'])){
+				$this->session->set_userdata('jobname',$res[0]['j_name']);}
+			if(!empty($res[0]['s_conn'])){
+				$this->session->set_userdata('conn_name',$res[0]['s_conn']);}
+			if(!empty($res[0]['s_db'])){
+			$this->session->set_userdata('db_list_name',$res[0]['s_db']);}
+			if(!empty($res[0]['s_schema_l'])){
+			$this->session->set_userdata('schemas',$res[0]['s_schema_l']);}
+			if(!empty($res[0]['s_schema_r'])){
+			$this->session->set_userdata('selected_schemas',$res[0]['s_schema_r']);}
+			if(!empty($res[0]['s_table_l'])){
+			$this->session->set_userdata('tables', $res[0]['s_table_l']);}
+			if(!empty($res[0]['s_table_r'])){
+			$this->session->set_userdata('selected_tables', $res[0]['s_table_r']);}
+			if(!empty($res[0]['t_conn'])){
+			$this->session->set_userdata('t_name', $res[0]['t_conn']);}
+			if(!empty($res[0]['t_db'])){
+			$this->session->set_userdata('t_database_list', $res[0]['t_db']);}
+			if(!empty($res[0]['t_schema'])){
+			$this->session->set_userdata('t_schema', $res[0]['t_schema']);}
+
+		} else {
+			if($this->session->userdata('job_id')){
+			$job_data = array(
+				's_conn' => $this->session->userdata('conn_name'),
+				's_db' => $this->session->userdata('db_list_name'),
+				's_schema_l' => $this->session->userdata('schemas'),
+				's_schema_r' => $this->session->userdata('selected_schemas'),
+				's_table_l' => $this->session->userdata('tables'),
+				's_table_r' => $this->session->userdata('selected_tables'),
+				't_conn' =>$this->session->userdata('t_name') ,
+				't_db' => $this->session->userdata('t_database_list'),
+				't_schema' =>$this->session->userdata('t_schema'),
+				'status' => 'completed',
+			 );
+
+			$this->public_model->insertJobList($job_data, $this->session->userdata('job_id'));
+
+			}
+		}
+
+		
+
 		$data['config']=$this->public_model->get_job_config($id);
 		$T_table_list = $this->session->userdata('target_table_lists');
 		//print_r($T_table_list);exit;

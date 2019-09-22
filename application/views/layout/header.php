@@ -16,8 +16,8 @@ date_default_timezone_set('Asia/Kolkata');
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Job List</a>
                 <div class="dropdown-menu">
-                    <?php foreach ($job_list as $row) {?>
-                    <a class="dropdown-item" href="<?php echo base_url();?>migration-process/<?php echo $row['id'];?>"> <?php echo $row['job_name'];?></a>
+                    <?php foreach ($job_details as $row) {?>
+                    <a class="dropdown-item" href="<?php echo base_url();?>migration-process/<?php echo $row['joblistid'];?>"> <?php echo $row['j_name'];?></a>
                     <?php } ?>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" data-toggle='modal' data-target='#GSCCModal' >Create Job</a>

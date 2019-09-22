@@ -8,7 +8,7 @@ button:focus,:focus{box-shadow:0 0 0 0.2rem rgba(0, 123, 255, 0);outline: 0;}
 a.nav-link {float: left;text-align: center;padding: 10px;color: white;text-decoration: none;font-size: 17px;line-height: unset;}
 .navbar a:hover {background-color:rgb(219, 125, 113);}
 .navbar-nav{margin-left: 25em;}
-.navbar-nav2{margin-left: 60em;display: block;color: white;font-size: 15px;}
+.navbar-nav2{ display: block;color: white;font-size: 15px;}
 .source{margin-top:3em;margin-left: -1em;}
 .source2{margin-top:3em;}
 .sidebar{border-right:1px solid rgb(199, 198, 198);height:95.0vh;box-shadow:0 0px 4px 0px #D2D3D4;overflow:auto;}

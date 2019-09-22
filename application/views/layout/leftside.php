@@ -49,8 +49,8 @@ if($pagename=='home'){} else if($pagename=='config'){ ?>
                   <h2 class="mb-0">
                     <button class="btn btn-link text-dark ml-2" type="button" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
                       
-                      <?php if( count($source)>0){
-                            echo "<b>".$source[0]['database_list']."</b>";
+                      <?php if($this->session->userdata('db_list_name')){
+                            echo "<b>".$this->session->userdata('db_list_name')."</b>";
                         }
                         else
                           {
@@ -111,13 +111,48 @@ if($pagename=='home'){} else if($pagename=='config'){ ?>
       </button>
     </h2>
   </div>
-  <div id="collapsefive" class="collapse target_body ml-3 p-2 <?php if(count($target)>0){ echo 'show'; }?>" aria-labelledby="headingOne" data-parent="#accordionExample">
+  <div id="collapsefive" class="collapse target_body  <?php if($this->session->userdata('t_name')){ echo 'show'; }?>" aria-labelledby="headingOne" data-parent="#accordionExample">
     <div class="card-body ">
-        <?php if(count($target)>0){
-                foreach ($target as $key => $value) {
-                      echo "<b>".$value['snow_flake']."</b><br>";
-                }
-          }?> 
+       <?php if($this->session->userdata('t_name')){ ?>
+                <div class="card-header" id="headingOne">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link text-dark ml-0" type="button" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
+                      
+                     <?php       echo "<b>".$this->session->userdata('t_name')."</b>";
+                        ?> 
+                    </button>
+                  </h2>
+                </div>
+                <?php  }?> 
+
+                <div class="card-header" id="headingOne">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link text-dark ml-2" type="button" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
+                      
+                      <?php if($this->session->userdata('t_database_list')){
+                            echo "<b>".$this->session->userdata('t_database_list')."</b>";
+                        }
+                        else
+                          {
+                            echo "<b>Select Database</b>";
+                          }?>
+                    </button>
+                  </h2>
+                </div>
+                <div class="card-header" id="headingOne">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link text-dark ml-2" type="button" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
+                      
+                      <?php if($this->session->userdata('t_schema')){
+                            echo "<b>".$this->session->userdata('t_schema')."</b>";
+                        }
+                        else
+                          {
+                            echo "<b>Select Schema</b>";
+                          }?>
+                    </button>
+                  </h2>
+                </div>
     </div>
   </div>
   </div>

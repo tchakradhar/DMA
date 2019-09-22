@@ -39,8 +39,8 @@
 				</td>
 				<td>
 					<div class="d-block">
-						<?php foreach ($target as $row) {
-								echo "<span class=' d-block py-2 '>PUBLIC</span>";
+						<?php if( !empty($this->session->userdata('t_schema'))){
+								echo "<span class=' d-block py-2 '>".$this->session->userdata('t_schema')."</span>";
 						} ?>	
 					</div>
 				</td>
