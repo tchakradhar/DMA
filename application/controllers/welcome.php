@@ -489,7 +489,8 @@ class Welcome extends CI_Controller {
 		
 		// $this->session->sess_destroy();
 		$user_session_items = array(
-			    'connection' ,
+				'connection' ,
+				
 				'host' 		,
 				'port'			,
 				'user_name'		,
@@ -498,12 +499,14 @@ class Welcome extends CI_Controller {
 				'db_list_name'	,
 				'schemas'		,
 				'conn_name' 	,
+
 				'schema_lists' 	,
 				'schemas' 		,
 				'selected_schemas' ,
 				'table_lists' 	,
 				'tables' 		,
 				'selected_tables' ,
+
 				't_connection' 	,
 				't_host' 		,
 				't_port'		,
@@ -514,9 +517,10 @@ class Welcome extends CI_Controller {
 				't_database_name'	,
 				't_schema'			,
 				't_name',
+
 				'jobname',
-						'job_id',
-			            'status'
+				'job_id',
+				'status'
 			);
 			$this->session->unset_userdata($user_session_items);
 		if($this->input->post('submit'))
@@ -563,6 +567,12 @@ class Welcome extends CI_Controller {
 			$this->session->set_userdata('t_database_list', $res[0]['t_db']);}
 			if(!empty($res[0]['t_schema'])){
 			$this->session->set_userdata('t_schema', $res[0]['t_schema']);}
+			if(!empty($res[0]['s_connection'])){
+				$this->session->set_userdata('connection', $res[0]['s_connection']);}
+				if(!empty($res[0]['userid'])){
+					$this->session->set_userdata('user_name', $res[0]['userid']);}
+					if(!empty($res[0]['password'])){
+						$this->session->set_userdata('password', $res[0]['password']);}
 
 		} else {
 			if($this->session->userdata('job_id')){
@@ -576,6 +586,7 @@ class Welcome extends CI_Controller {
 				't_conn' =>$this->session->userdata('t_name') ,
 				't_db' => $this->session->userdata('t_database_list'),
 				't_schema' =>$this->session->userdata('t_schema'),
+				's_connection' => $this->session->userdata('connection'),
 				'status' => 'completed',
 			 );
 			$this->public_model->insertJobList($job_data, $this->session->userdata('job_id'));

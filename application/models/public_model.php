@@ -18,7 +18,7 @@ class Public_model extends CI_Model {
     return $ex->result_array();
   }
   function getJobList($id){
-    $query="SELECT * FROM `joblist` where status = 'completed' and joblistid = $id ";
+    $query="SELECT * FROM `joblist` j inner join configuration c on j.s_conn = c.name where status = 'completed' and joblistid = $id ";
     $ex=$this->db->query($query);
     return $ex->result_array();
   }
