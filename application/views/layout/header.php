@@ -45,7 +45,7 @@ date_default_timezone_set('Asia/Kolkata');
                     <label for="recipient-name" class="col-form-label"> Name:</label>
                     <input type="text" class="form-control"  id="job_name" name="job_name">
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer float-right col-md-5">
                     <input type="submit" class="btn btn-success" name="submit" value="Create">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
