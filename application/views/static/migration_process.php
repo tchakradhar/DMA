@@ -1,4 +1,4 @@
-<div class="col-md-10 mt-4 px-5 ">
+<div class="col-md-12 mt-4 px-5 ">
 	<div class="source-title ">
 		<h4 class="text-danger text-center"><b></b></h4>
 	</div>
