@@ -534,9 +534,6 @@ class Welcome extends CI_Controller {
 		}
 	}
 	public function migration_process($id=0){
-
-
-
 		$data = $this->general();
 		$T_table_list = $this->session->userdata('target_table_lists');
 		$data['schema']=$this->public_model->get_job_schema($id);
@@ -544,6 +541,47 @@ class Welcome extends CI_Controller {
 		$data['target']=$this->public_model->get_job_target($id);
 		$data['Table_Details'] = [];
 		//print_r($this->session->userdata());exit;
+		if($id){
+			$res = $this->public_model->getJobList($id);
+			if(!empty($res[0]['j_name'])){
+				$this->session->set_userdata('jobname',$res[0]['j_name']);}
+			if(!empty($res[0]['s_conn'])){
+				$this->session->set_userdata('conn_name',$res[0]['s_conn']);}
+			if(!empty($res[0]['s_db'])){
+			$this->session->set_userdata('db_list_name',$res[0]['s_db']);}
+			if(!empty($res[0]['s_schema_l'])){
+			$this->session->set_userdata('schemas',$res[0]['s_schema_l']);}
+			if(!empty($res[0]['s_schema_r'])){
+			$this->session->set_userdata('selected_schemas',$res[0]['s_schema_r']);}
+			if(!empty($res[0]['s_table_l'])){
+			$this->session->set_userdata('tables', $res[0]['s_table_l']);}
+			if(!empty($res[0]['s_table_r'])){
+			$this->session->set_userdata('selected_tables', $res[0]['s_table_r']);}
+			if(!empty($res[0]['t_conn'])){
+			$this->session->set_userdata('t_name', $res[0]['t_conn']);}
+			if(!empty($res[0]['t_db'])){
+			$this->session->set_userdata('t_database_list', $res[0]['t_db']);}
+			if(!empty($res[0]['t_schema'])){
+			$this->session->set_userdata('t_schema', $res[0]['t_schema']);}
+
+		} else {
+			if($this->session->userdata('job_id')){
+			$job_data = array(
+				's_conn' => $this->session->userdata('conn_name'),
+				's_db' => $this->session->userdata('db_list_name'),
+				's_schema_l' => $this->session->userdata('schemas'),
+				's_schema_r' => $this->session->userdata('selected_schemas'),
+				's_table_l' => $this->session->userdata('tables'),
+				's_table_r' => $this->session->userdata('selected_tables'),
+				't_conn' =>$this->session->userdata('t_name') ,
+				't_db' => $this->session->userdata('t_database_list'),
+				't_schema' =>$this->session->userdata('t_schema'),
+				'status' => 'completed',
+			 );
+			$this->public_model->insertJobList($job_data, $this->session->userdata('job_id'));
+			}
+		}
+		$data['config']=$this->public_model->get_job_config($id);
 		$conn=$this->session->userdata('connection');
 		$user_name = $this->session->userdata('user_name');
 		$password = $this->session->userdata('password');
