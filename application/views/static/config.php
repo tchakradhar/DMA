@@ -366,7 +366,7 @@ if($snow_flake)
                 </div>
                 <div class="modal-body pb-2">
                     <form action="<?php echo base_url(); ?>update_connection" method="POST">
-                            <div class="form-group">
+                        <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Connection Name:</label>
                             <input type="text" class="form-control"  id="name" name="name">
                         </div>
@@ -386,13 +386,10 @@ if($snow_flake)
                             <label for="recipient-name" class="col-form-label">Port:</label>
                             <input type="text" class="form-control"  id="port" name="port">
                         </div>
-                        <?php foreach ($dbNameList as $key => $value) { $db_id = $value['id']; }
-                            if($db_id > 6){?>
-                        <div class="form-group">
+                        <div class="form-group W_H">
                             <label for="recipient-name" class="col-form-label">Warehouse:</label>
                             <input type="text" class="form-control" id="warehouse" name="warehouse">
                         </div>
-                        <?php }?>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Database:</label>
                             <input type="text" class="form-control"  id="database" name="database_name">
@@ -436,9 +433,8 @@ if($snow_flake)
 <script type="text/javascript">
     function get_record(id)
     {
-            $.ajax(
-            {
-                type:"POST",
+        $.ajax({
+            type:"POST",
             url:"<?php echo base_url();?>get_database_record/"+id,
             datatype:"json",
             success:function(data)
@@ -449,6 +445,9 @@ if($snow_flake)
                 $("#port").val(rec[0].port);
                 $("#database").val(rec[0].database_name);
                 $("#warehouse").val(rec[0].warehouse);
+                if($("#warehouse").val()==''){
+                    $('.W_H').hide();
+                }else $('.W_H').show();
                 $("#user").val(rec[0].userid);
                 $("#password").val(rec[0].password);
                 $("#config_id").val(rec[0].id);
@@ -460,44 +459,40 @@ if($snow_flake)
     }
     function delete_record(id)
     {
-            $.ajax({
-                url: "<?php echo base_url();?>config_delete_rec",
-                type: "post",
-                data: {id:id},
-                success: function(res) {
-                    console.log(res);
-                }
-            });
-            location.href='config';
-            alert('Record Deleted Successfully');
+        $.ajax({
+            url: "<?php echo base_url();?>config_delete_rec",
+            type: "post",
+            data: {id:id},
+            success: function(res) {
+                console.log(res);
+            }
+        });
+        location.href='config';
+        alert('Record Deleted Successfully');
     }
     function Check_Conn(id)
     {
-        //console.log(id+"Test");
-            $.ajax({
-                url: "<?php echo base_url();?>check-conn/"+id,
-                type: "post",
-                data: {id:id},
-                success: function(res) {
-                    console.log(res);
-                    if(res == 'success'){alert('Connection Established Successfully');}else {alert('Error Establishing Connection  ');}
-                }
-            });
-           // location.href='config.php'; 
+        $.ajax({
+            url: "<?php echo base_url();?>check-conn/"+id,
+            type: "post",
+            data: {id:id},
+            success: function(res) {
+                console.log(res);
+                if(res == 'success'){alert('Connection Established Successfully');}else {alert('Error Establishing Connection  ');}
+            }
+        });
     }
     function Check_Conn_Target(id)
     {
-        //console.log(id+"Test");
-            $.ajax({
-                url: "<?php echo base_url();?>check-conn-target/"+id,
-                type: "post",
-                data: {id:id},
-                success: function(res) {
-                    console.log(res);
-                    if(res == 'success'){alert('Connection Established Successfully');}else {alert('Error Establishing Connection  ');}
-                }
-            });
-           // location.href='config.php'; 
+        $.ajax({
+            url: "<?php echo base_url();?>check-conn-target/"+id,
+            type: "post",
+            data: {id:id},
+            success: function(res) {
+                console.log(res);
+                if(res == 'success'){alert('Connection Established Successfully');}else {alert('Error Establishing Connection  ');}
+            }
+        });
     }
     function Check_SF()
     {
@@ -509,5 +504,4 @@ if($snow_flake)
         var x = $('.database_list_edit').val();
         if(x >= 6){$('.W_none').show();}else{$('.W_none').hide();}
     }
-    
 </script>

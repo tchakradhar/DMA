@@ -231,6 +231,7 @@ class Welcome extends CI_Controller {
 	}
 	function config()
 	{
+		$database_list = $this->session->userdata('db_list_name');
 		if(isset($_POST['id']))
 		{
 		  $id=$_POST['id'];
@@ -271,7 +272,10 @@ class Welcome extends CI_Controller {
 		$data['postgresql']=$this->public_model->get_data_postgresql();
 		$data['AllconfigList']=$this->public_model->getAllConfigList();
 		$data['dbNameList']= $this->public_model->get_dbnames();
+		$database_list = $this->session->userdata('db_list_name');
+		$data['dbList'] = $database_list;
 		$this->load->view('welcome',$data);
+		//echo $database_list;exit;
 	}
 	function get_database_record($id)
 	{
