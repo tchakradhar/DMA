@@ -11,7 +11,7 @@ a.nav-link {float: left;text-align: center;padding: 10px;color: white;text-decor
 .navbar-nav2{ display: block;color: white;font-size: 15px;}
 .source{margin-top:3em;margin-left: -1em;}
 .source2{margin-top:3em;}
-.sidebar{border-right:1px solid rgb(199, 198, 198);height:95.0vh;box-shadow:0 0px 4px 0px #D2D3D4;overflow:auto;}
+.sidebar{border-right:1px solid rgb(199, 198, 198);height:90vh;box-shadow:0 0px 4px 0px #D2D3D4;overflow:auto;}
 .source-title{padding: 0.8em;}
 .source-footer{padding: 0.6em;}
 .selectall{margin-left: 2em;}
@@ -49,6 +49,8 @@ nav h2{color:#fff;}
 #mCSB_1_container{top:0px !important;}
 .table_view{display:none;}
 .migrate_button{background:none;border:none;text-decoration:underline;cursor:pointer}
+.d-block input{padding:10px;}
+.configuration_page #New_Conn{margin:unset !important;}
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {font-family: 'Poppins', sans-serif;background: #fafafa;}

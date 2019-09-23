@@ -1,9 +1,9 @@
 
 <div class="col-md-12 mt-4 px-5 ">
 
-    <div class="">
+    <div class="configuration_page">
         <div class="row mb-4">
-            <button class="btn float-right btn-danger" data-toggle='modal' data-target='#myModal1' id="">New Conection</button>
+            <button class="btn float-right btn-danger" data-toggle='modal' data-target='#myModal1' id="New_Conn">New Conection</button>
         </div>
         <div class="Avail_Conn">Available Connections</div>
         <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
