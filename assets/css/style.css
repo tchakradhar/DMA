@@ -48,9 +48,12 @@ nav h2{color:#fff;}
 #mCSB_1_scrollbar_vertical{display:none !important;}
 #mCSB_1_container{top:0px !important;}
 .table_view{display:none;}
-.migrate_button{background:none;border:none;text-decoration:underline;cursor:pointer}
+.migrate_button{background:none;border:none;text-decoration:underline;cursor:pointer;width: 100%;text-align: left;}
 .d-block input{padding:10px;}
 .configuration_page #New_Conn{margin:unset !important;}
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td{
+    border: 1px solid #ddd;
+}
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {font-family: 'Poppins', sans-serif;background: #fafafa;}

@@ -258,7 +258,6 @@ $(function () {
 </script>
 <?php } ?>
 <?php
-
 // print_r( $this->session->userdata());?>
 </body>
 </html>

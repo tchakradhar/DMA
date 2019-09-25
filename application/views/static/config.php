@@ -1,6 +1,5 @@
 
 <div class="col-md-12 mt-4 px-5 ">
-
     <div class="configuration_page">
         <div class="row mb-4">
             <button class="btn float-right btn-danger" data-toggle='modal' data-target='#myModal1' id="New_Conn">New Conection</button>
@@ -56,20 +55,14 @@
                             <div class="modal-footer">
                                 <input type="submit" class="btn btn-success" name="insert" value="Submit">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
-        <?php 
-if($redshift)
-{
-    ?>
-    <h5 class="text-danger"><?php if($redshift[0]['database_id']==1){ echo "Amazon RedShift
-"; }  ?></h5>
+<?php if($redshift){?>
+    <h5 class="text-danger"><?php if($redshift[0]['database_id']==1){ echo "Amazon RedShift"; }  ?></h5>
             <div class="row">
                 <div class="col">
                     <h6>Connection Name</h6></div>
@@ -84,58 +77,49 @@ if($redshift)
                 <div class="col">
                     <h6>Action</h6></div>
             </div>
-    <?php
-   foreach ($redshift as $key => $value) { ?>
+<?php foreach ($redshift as $key => $value) {?>
             <div class="row mt-1">
-            <div class="col">
-                <p class="text-secondary"><?php echo $value['name']; ?></p>
+                <div class="col">
+                    <p class="text-secondary"><?php echo $value['name']; ?></p>
+                </div>
+                <div class="col">
+                    <p class="text-secondary"><?php echo $value['hosturl']; ?></p>
+                </div>
+                <div class="col">
+                    <p class="text-secondary"><?php echo $value['port']; ?></p>
+                </div>
+                <div class="col">
+                    <p class="text-secondary"><?php echo $value['database_name']; ?></p>
+                </div>
+                <div class="col">
+                    <p class="text-secondary"><?php echo $value['userid']; ?></p>
+                </div>
+                <div class="col py-0 ">
+                    <a href="#" id="<?php echo $value['id'];?>" onclick="get_record(this.id)" data-toggle='modal' data-target='#myModal'>
+                    <i class="fa fa-edit"></i></a><a href="" id="<?php echo $value['id']; ?>"  onclick="delete_record(this.id)"></i>
+                    <i class="fa fa-trash" ></i></a>
+                    <i data-target='#myModal2' onclick="Check_Conn(<?php echo $value['id'];?>)" class="fa fa-check-circle" ></i>
+                </div>
             </div>
-            <div class="col">
-                <p class="text-secondary"><?php echo $value['hosturl']; ?></p>
-            </div>
-            <div class="col">
-                <p class="text-secondary"><?php echo $value['port']; ?></p>
-            </div>
-            <div class="col">
-                <p class="text-secondary"><?php echo $value['database_name']; ?></p>
-            </div>
-            <div class="col">
-                <p class="text-secondary"><?php echo $value['userid']; ?></p>
-            </div>
-            <div class="col py-0 ">
-            <a href="#" id="<?php echo $value['id']; ?>"  onclick="get_record(this.id)" data-toggle='modal' data-target='#myModal'> <i class="fa fa-edit" ></i></a><a href="" id="<?php echo $value['id']; ?>"  onclick="delete_record(this.id)"> 
-                 <i class="fa fa-trash" ></i>
-            </a>
-            <i data-target='#myModal2' onclick="Check_Conn(<?php echo $value['id'];?>)" class="fa fa-check-circle" ></i>
-            </div>
-             </div>
-  <?php
-  }  
-}
-?>
-<!-- sql server -->
-<?php 
-if($postgresql)
-{
-    ?>
+  <?php }}if($postgresql){?>
     <h5 class="text-danger"><?php if($postgresql[0]['database_id']==2){ echo "PostgreSQL"; }  ?></h5>
-            <div class="row">
-                <div class="col">
-                    <h6>Connection Name</h6></div>
-                <div class="col">
-                    <h6>Host Name</h6></div>
-                <div class="col">
-                    <h6>Port</h6></div>
-                <div class="col">
-                    <h6>Database</h6></div>
-                <div class="col">
-                    <h6>Username</h6></div>
-                <div class="col">
-                    <h6>Action</h6></div>
-            </div>
+        <div class="row">
+            <div class="col">
+                <h6>Connection Name</h6></div>
+            <div class="col">
+                <h6>Host Name</h6></div>
+            <div class="col">
+                <h6>Port</h6></div>
+            <div class="col">
+                <h6>Database</h6></div>
+            <div class="col">
+                <h6>Username</h6></div>
+            <div class="col">
+                <h6>Action</h6></div>
+        </div>
     <?php
    foreach ($postgresql as $key => $value) { ?>
-            <div class="row mt-1">
+        <div class="row mt-1">
             <div class="col">
                 <p class="text-secondary"><?php echo $value['name']; ?></p>
             </div>
@@ -151,25 +135,14 @@ if($postgresql)
             <div class="col">
                 <p class="text-secondary"><?php echo $value['userid']; ?></p>
             </div>
-             
             <div class="col py-0 ">
-                <a href="#" id="<?php echo $value['id']; ?>"  onclick="get_record(this.id)" data-toggle='modal' data-target='#myModal'> <i class="fa fa-edit" ></i></a>
+                <a href="#" id="<?php echo $value['id']; ?>"  onclick="get_record(this.id)" data-toggle='modal' data-target='#myModal'> 
+                <i class="fa fa-edit" ></i></a>
                 <a href="#" id="<?php echo $value['id']; ?>"  onclick="delete_record(this.id)"><i class="fa fa-trash" ></i> </a>
                 <i data-toggle='modal' data-target='#myModal2' class="fa fa-check-circle" ></i>
             </div>
-
-             </div>
-  <?php
-  }  
-}
-?>
-<!-- Mysql -->
-
-<!-- Netezza -->
-<?php 
-if($oracle)
-{
-    ?>
+        </div>
+  <?php }}if($oracle){?>
     <h5 class="text-danger"><?php if($oracle[0]['database_id']==3){ echo "Oracle "; }  ?></h5>
             <div class="row">
                 <div class="col">
@@ -187,7 +160,7 @@ if($oracle)
             </div>
     <?php
    foreach ($oracle as $key => $value) { ?>
-            <div class="row mt-1">
+        <div class="row mt-1">
             <div class="col">
                 <p class="text-secondary"><?php echo $value['name']; ?></p>
             </div>
@@ -203,19 +176,13 @@ if($oracle)
             <div class="col">
                 <p class="text-secondary"><?php echo $value['userid']; ?></p>
             </div>
-             
-            <div class="col py-0 "><a href="#" id="<?php echo $value['id']; ?>"  onclick="get_record(this.id)" data-toggle='modal' data-target='#myModal'> <i class="fa fa-edit" ></i></a><a href="" id="<?php echo $value['id']; ?>"  onclick="delete_record(this.id)"> 
-                 <i class="fa fa-trash" ></i></a>
-                 <i data-toggle='modal' onclick="Check_Conn(<?php echo $value['id'];?>)" class="fa fa-check-circle" ></i>
+            <div class="col py-0 "><a href="#" id="<?php echo $value['id']; ?>"  onclick="get_record(this.id)" data-toggle='modal' data-target='#myModal'> 
+                <i class="fa fa-edit" ></i></a><a href="" id="<?php echo $value['id']; ?>"  onclick="delete_record(this.id)"> 
+                <i class="fa fa-trash" ></i></a>
+                <i data-toggle='modal' onclick="Check_Conn(<?php echo $value['id'];?>)" class="fa fa-check-circle" ></i>
             </div>
-             </div>
-  <?php
-  }  
-}
-
-if($sql)
-{
-    ?>
+        </div>
+  <?php }}if($sql){?>
     <h5 class="text-danger"><?php if($sql[0]['database_id']==4){ echo "MS SQL Server "; }  ?></h5>
             <div class="row">
                 <div class="col">
@@ -233,7 +200,7 @@ if($sql)
             </div>
     <?php
    foreach ($sql as $key => $value) { ?>
-            <div class="row mt-1">
+        <div class="row mt-1">
             <div class="col">
                 <p class="text-secondary"><?php echo $value['name']; ?></p>
             </div>
@@ -249,19 +216,13 @@ if($sql)
             <div class="col">
                 <p class="text-secondary"><?php echo $value['userid']; ?></p>
             </div>
-             
-            <div class="col py-0 "><a href="#" id="<?php echo $value['id']; ?>"  onclick="get_record(this.id)" data-toggle='modal' data-target='#myModal'> <i class="fa fa-edit" ></i></a><a href="" id="<?php echo $value['id']; ?>"  onclick="delete_record(this.id)"> 
-                 <i class="fa fa-trash" ></i></a>
-                 <i data-toggle='modal' data-target='#myModal2' class="fa fa-check-circle" ></i>
+                
+            <div class="col py-0 "><a href="#" id="<?php echo $value['id']; ?>"  onclick="get_record(this.id)" data-toggle='modal' data-target='#myModal'> 
+                <i class="fa fa-edit" ></i></a><a href="" id="<?php echo $value['id']; ?>"  onclick="delete_record(this.id)"></i>
+                <i class="fa fa-trash" ></i></a><i data-toggle='modal' data-target='#myModal2' class="fa fa-check-circle" ></i>
             </div>
-             </div>
-  <?php
-  }  
-}
-
-if($mysql)
-{
-    ?>
+        </div>
+  <?php }}if($mysql){ ?>
     <h5 class="text-danger"><?php if($mysql[0]['database_id']==5){ echo "MySQL"; }  ?></h5>
             <div class="row">
                 <div class="col">
@@ -279,7 +240,7 @@ if($mysql)
             </div>
     <?php
    foreach ($mysql as $key => $value) { ?>
-            <div class="row mt-1">
+        <div class="row mt-1">
             <div class="col">
                 <p class="text-secondary"><?php echo $value['name']; ?></p>
             </div>
@@ -295,18 +256,12 @@ if($mysql)
             <div class="col">
                 <p class="text-secondary"><?php echo $value['userid']; ?></p>
             </div>
-             
             <div class="col py-0 "><a href="#" id="<?php echo $value['id']; ?>"  onclick="get_record(this.id)" data-toggle='modal' data-target='#myModal'> <i class="fa fa-edit" ></i></a><a href="" id="<?php echo $value['id']; ?>"  onclick="delete_record(this.id)"> 
-                 <i class="fa fa-trash" ></i></a>
-                 <i data-toggle='modal' onclick="Check_Conn(<?php echo $value['id'];?>)" class="fa fa-check-circle" ></i>
+                    <i class="fa fa-trash" ></i></a>
+                    <i data-toggle='modal' onclick="Check_Conn(<?php echo $value['id'];?>)" class="fa fa-check-circle" ></i>
             </div>
-             </div>
-  <?php
-  }  
-}        
-if($snow_flake)
-{
-    ?>
+        </div>
+  <?php }}if($snow_flake){?>
     <h5 class="text-danger"><?php if($snow_flake[0]['database_id']==6){ echo "Snow Flake"; }  ?></h5>
             <div class="row">
                 <div class="col-md-2">
@@ -345,15 +300,13 @@ if($snow_flake)
             <div class="col-md-1">
                 <p class="text-secondary"><?php echo $value['userid']; ?></p>
             </div>
-            <div class="col-md-2 py-0 "><a href="#" id="<?php echo $value['id']; ?>"  onclick="get_record(this.id)" data-toggle='modal' data-target='#myModal'> <i class="fa fa-edit" ></i></a><a href="" id="<?php echo $value['id']; ?>"  onclick="delete_record(this.id)"> 
-                 <i class="fa fa-trash" ></i></a>
-                 <i data-toggle='modal' onclick="Check_Conn_Target(<?php echo $value['id'];?>)" class="fa fa-check-circle" ></i>
+            <div class="col-md-2 py-0 ">
+                <a href="#" id="<?php echo $value['id'];?>" onclick="get_record(this.id)" data-toggle='modal' data-target='#myModal'><i class="fa fa-edit"></i></a>
+                <a href="#" id="<?php echo $value['id'];?>" onclick="delete_record(this.id)"><i class="fa fa-trash"></i></a>
+                <i data-toggle='modal' onclick="Check_Conn_Target(<?php echo $value['id'];?>)" class="fa fa-check-circle" ></i>
             </div>
              </div>
-  <?php
-  }  
-}
-?>               
+<?php }}?>               
 </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog custom-modeal-body" role="document">
@@ -429,7 +382,6 @@ if($snow_flake)
         </div>
     </div>
 </div>
-
 <script type="text/javascript">
     function get_record(id)
     {

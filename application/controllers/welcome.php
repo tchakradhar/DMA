@@ -239,6 +239,7 @@ class Welcome extends CI_Controller {
 		}
 		if($this->input->post('update'))
 		{
+			$conn_name=$this->input->post('name');
 			$config_id=$this->input->post('config_id');
 			$db_type=$this->input->post('type');
 			$host=$this->input->post('host');
@@ -247,7 +248,7 @@ class Welcome extends CI_Controller {
 			$database=$this->input->post('database_name');
 			$user=$this->input->post('user');
 			$password=$this->input->post('password');
-			$this->public_model->update_config($config_id,$db_type,$host,$port,$warehouse,$database,$user,$password);
+			$this->public_model->update_config($conn_name,$config_id,$db_type,$host,$port,$warehouse,$database,$user,$password);
 		}
 		if($this->input->post('insert'))
 		{

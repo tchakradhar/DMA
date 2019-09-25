@@ -149,8 +149,8 @@ class Public_model extends CI_Model {
   	$ex=$this->db->query($query);
   	return $ex->result_array();
   }
-	function update_config($id,$type,$host,$port,$warehouse,$database,$user,$password){
-    $sqll = "UPDATE `configuration` SET `hosturl`='$host',`port`='$port',`warehouse`='$warehouse', `database_name`='$database',`userid`='$user',`password`='$password',`database_id`='$type' WHERE id='$id'";
+	function update_config($conn_name,$id,$type,$host,$port,$warehouse,$database,$user,$password){
+    $sqll = "UPDATE `configuration` SET `name`='$conn_name',`hosturl`='$host',`port`='$port',`warehouse`='$warehouse', `database_name`='$database',`userid`='$user',`password`='$password',`database_id`='$type' WHERE id='$id'";
     $ex=$this->db->query($sqll);
   }
   function insert_config($name,$type,$host,$port,$warehouse,$database,$user,$password){

@@ -5,6 +5,7 @@
 }
 </style>
 <div class="schema_style">
+<div class="text-danger text-uppercase font-weight-bold d-block text-center mb-3">Tables</div>
     <div id="list"></div>
     <div class="buttons">
         <input type="hidden" name="schema_list" value="" id="schema_list">
