@@ -8,7 +8,7 @@ date_default_timezone_set('Asia/Kolkata');
         <!-- <a href="<?php echo base_url();?>" class="navbar-brand">
             <img src="<?php echo  base_url();?>assets/images/Migration_logo.png" style="width:140px;margin:auto;display:block;">
         </a> -->
-        <h3 class="col-md-1">DMA</h3>
+        <h3 class="col-md-1">DMU</h3>
         <ul class="nav nav-pills col-md-3">
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url();?>config" class="nav-item nav-link text-light">Configuration</a>

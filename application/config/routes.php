@@ -42,6 +42,7 @@ $route['migration/(:any)']='welcome/migration/$1';
 
 /*New code*/
 $route['migration-process/(:any)']='welcome/migration_process/$1';
+$route['migration-process/(:any)/(:any)/(:any)/(:any)']='welcome/migration_process/$1/$2/$3/$4';
 $route['migration-process']='welcome/migration_process';
 
 $route['404_override'] = '';

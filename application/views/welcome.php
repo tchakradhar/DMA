@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Codeigniter</title>
+	<title>DMU</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 	<meta content='yes' name='apple-mobile-web-app-capable' />
@@ -67,23 +67,12 @@ $(function () {
 		datatype:"json",
 		success:function(result){
 			result = JSON.parse(result);
-			//localStorage.setItem("selected_schemas",result);
-			//console.log(localStorage.getItem("selected_schemas"));
 			console.log(result);
 			if(result.status == 'success'){
 				var data = {
 	                available: result.data,
 	                selected: []
 	            };
-	            // var selVal = '';
-	            // result.schema_selected.forEach(function(currentValue, index, arr){
-	            //     	if(!selVal) {
-	            //     	selVal = currentValue.id; 
-	            //     	} else {
-	            //     	selVal = selVal + ',' + currentValue.id;
-	            //     	}
-	            //     });
-	            // document.getElementById("schema_list").value = selVal;
 	            var a = $('#list').pickList({
 	                data: data,
 	            });
@@ -92,31 +81,9 @@ $(function () {
 	            });
 	            a.on('picklist.remove', function (event, v) {
 	                console.log(v);
-
-	                // var selVal = "";
-	                // v.forEach(function(currentValue, index, arr){
-	                // 	if(!selVal) {
-	                // 	selVal = currentValue.id; 
-	                // 	} else {
-	                // 	selVal = selVal + ',' + currentValue.id;
-	                // 	}
-	                // });
-	                //   document.getElementById("schema_list").value = selVal;
-	                // console.log(selVal);
 	            });
 	            a.on('picklist.add', function (event, v) {
-	                console.log(v);
-	                // var selVal = "";
-	                // v.forEach(function(currentValue, index, arr){
-	                // 	console.log(currentValue);
-	                // 	if(!selVal) {
-	                // 	selVal = currentValue.id; 
-	                // 	} else {
-	                // 	selVal = selVal + ',' + currentValue.id;
-	                // 	}
-	                // });
-	                //   document.getElementById("schema_list").value = selVal;
-	                // console.log(selVal);
+	                console.log(v);3
 	            });
 			}		 	
 		}
@@ -134,23 +101,12 @@ $(function () {
 		datatype:"json",
 		success:function(result){
 			result = JSON.parse(result);
-			//localStorage.setItem("selected_schemas",result);
-			//console.log(localStorage.getItem("selected_schemas"));
 			console.log(result);
 			if(result.status == 'success'){
 				var data = {
 	                available: result.data,
 	                selected: []
 	            };
-	            // var selVal = '';
-	            // result.schema_selected.forEach(function(currentValue, index, arr){
-	            //     	if(!selVal) {
-	            //     	selVal = currentValue.id; 
-	            //     	} else {
-	            //     	selVal = selVal + ',' + currentValue.id;
-	            //     	}
-	            //     });
-	            // document.getElementById("schema_list").value = selVal;
 	            var a = $('#list').pickList({
 	                data: data,
 	            });
@@ -159,31 +115,9 @@ $(function () {
 	            });
 	            a.on('picklist.remove', function (event, v) {
 	                console.log(v);
-
-	                // var selVal = "";
-	                // v.forEach(function(currentValue, index, arr){
-	                // 	if(!selVal) {
-	                // 	selVal = currentValue.id; 
-	                // 	} else {
-	                // 	selVal = selVal + ',' + currentValue.id;
-	                // 	}
-	                // });
-	                //   document.getElementById("schema_list").value = selVal;
-	                // console.log(selVal);
 	            });
 	            a.on('picklist.add', function (event, v) {
 	                console.log(v);
-	                // var selVal = "";
-	                // v.forEach(function(currentValue, index, arr){
-	                // 	console.log(currentValue);
-	                // 	if(!selVal) {
-	                // 	selVal = currentValue.id; 
-	                // 	} else {
-	                // 	selVal = selVal + ',' + currentValue.id;
-	                // 	}
-	                // });
-	                //   document.getElementById("schema_list").value = selVal;
-	                // console.log(selVal);
 	            });
 			}		 	
 		}
@@ -200,23 +134,12 @@ $(function () {
 		datatype:"json",
 		success:function(result){
 			result = JSON.parse(result);
-			//localStorage.setItem("selected_schemas",result);
-			//console.log(localStorage.getItem("selected_schemas"));
 			console.log(result);
 			if(result.status == 'success'){
 				var data = {
 	                available: result.data,
 	                selected: []
 	            };
-	            // var selVal = '';
-	            // result.schema_selected.forEach(function(currentValue, index, arr){
-	            //     	if(!selVal) {
-	            //     	selVal = currentValue.id; 
-	            //     	} else {
-	            //     	selVal = selVal + ',' + currentValue.id;
-	            //     	}
-	            //     });
-	            // document.getElementById("schema_list").value = selVal;
 	            var a = $('#list').pickList({
 	                data: data,
 	            });
@@ -225,31 +148,9 @@ $(function () {
 	            });
 	            a.on('picklist.remove', function (event, v) {
 	                console.log(v);
-
-	                // var selVal = "";
-	                // v.forEach(function(currentValue, index, arr){
-	                // 	if(!selVal) {
-	                // 	selVal = currentValue.id; 
-	                // 	} else {
-	                // 	selVal = selVal + ',' + currentValue.id;
-	                // 	}
-	                // });
-	                //   document.getElementById("schema_list").value = selVal;
-	                // console.log(selVal);
 	            });
 	            a.on('picklist.add', function (event, v) {
 	                console.log(v);
-	                // var selVal = "";
-	                // v.forEach(function(currentValue, index, arr){
-	                // 	console.log(currentValue);
-	                // 	if(!selVal) {
-	                // 	selVal = currentValue.id; 
-	                // 	} else {
-	                // 	selVal = selVal + ',' + currentValue.id;
-	                // 	}
-	                // });
-	                //   document.getElementById("schema_list").value = selVal;
-	                // console.log(selVal);
 	            });
 			}		 	
 		}
@@ -257,7 +158,6 @@ $(function () {
 });
 </script>
 <?php } ?>
-<?php
-// print_r( $this->session->userdata());?>
+<?php // print_r( $this->session->userdata());?>
 </body>
 </html>

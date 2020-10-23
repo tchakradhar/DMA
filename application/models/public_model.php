@@ -5,9 +5,8 @@ class Public_model extends CI_Model {
 	{
 		parent::__construct();
 	}
-   function insertJobList($data ,$job_id){
-
-    $this->db->where('joblistid', $job_id);
+	function insertJobList($data ,$job_id){
+	    $this->db->where('joblistid', $job_id);
     $this->db->update('joblist', $data);
     return 1;
   }
@@ -232,6 +231,16 @@ class Public_model extends CI_Model {
   function get_job_schema($id){
     $query="SELECT * FROM `create_job` INNER JOIN `job_schema` on `create_job`.id = `job_schema`.job_id   INNER JOIN  `schemas` on 
     `job_schema`.schema_id = `schemas`.id   where job_id = $id ";
+    $ex=$this->db->query($query);
+    return $ex->result_array();
+  }
+  function get_job_up_schema($id){
+    $query="SELECT t_schema FROM `joblist` where job_id = '$id' ";
+    $ex=$this->db->query($query);
+    return $ex->result_array();
+  }
+  function get_job_up_table($id){
+    $query="SELECT t_table FROM `joblist` where job_id = '$id' ";
     $ex=$this->db->query($query);
     return $ex->result_array();
   }

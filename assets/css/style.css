@@ -49,10 +49,18 @@ nav h2{color:#fff;}
 #mCSB_1_container{top:0px !important;}
 .table_view{display:none;}
 .migrate_button{background:none;border:none;text-decoration:underline;cursor:pointer;width: 100%;text-align: left;}
-.d-block input{padding:10px;}
+.d-block input{padding-right:7px !important;padding-top:9px !important;padding-bottom:7px !important;}
 .configuration_page #New_Conn{margin:unset !important;}
-.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td{
-    border: 1px solid #ddd;
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, 
+.table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td{border: 1px solid #fff;}
+.input-field {width:100%;padding-left:10px !important;border:4px inset #ccc !important;}
+.table-gray{background:#777!important;color: #fff;}
+.bg-gray{
+    background-color: #eee !important;
+    color: #555 !important;
+    padding: 11px !important;
+    margin: auto;
+    font-weight: bold;
 }
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
