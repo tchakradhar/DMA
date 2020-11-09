@@ -64,7 +64,12 @@ export const CreateConnection = Loadable({
 export const Configuration = Loadable({
   loader: () => import('./Pages/Configuration'),
   loading: Loading,
-});export const JobCreation = Loadable({
+});
+export const JobCreation = Loadable({
   loader: () => import('./Pages/JobCreation'),
+  loading: Loading,
+});
+export const SourceTable = Loadable({
+  loader: () => import('./Pages/SourceTable'),
   loading: Loading,
 });

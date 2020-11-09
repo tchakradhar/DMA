@@ -13,7 +13,8 @@ import {
   NotFound,
   CreateConnection,
   JobCreation,
-  Configuration
+  Configuration,
+  SourceTable
 } from '../pageListAsync';
 // import CreateConnection from '../Pages/CreateConnection';
 function Application(props) {
@@ -28,6 +29,9 @@ function Application(props) {
         <Route path="/app/job-creation" component={JobCreation} />
 
         <Route path="/app/dashboard" component={DashboardPage} />
+        <Route path="/app/source" component={SourceTable} />
+
+        
         {/* <Route path="/app/form" component={Form} />
         <Route path="/app/table" component={Table} />
         <Route path="/app/page-list" component={Parent} />

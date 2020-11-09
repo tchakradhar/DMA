@@ -44,3 +44,6 @@ text-decoration: none !important;
 .card-body h6{
     color: white;
 }
+.next-btn-margin{
+    margin-left: 169px;
+}
