@@ -1,9 +1,20 @@
-import React from 'react';
+import React,{useState}from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
 import { PapperBlock } from 'dan-components';
 
+
+
 function JobCreation() {
+  
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    console.log(`Submitting Name - ${name}`);
+    evt.target.reset();
+    // alert(`Submitting Name ${name}`)
+}
+
+  const [name, setName] = useState("");
   const title = brand.name + ' - Dashboard';
   const description = brand.desc;
   return (
@@ -21,10 +32,10 @@ function JobCreation() {
           <div className="container">
           <div className="col-3"></div>
             <div className="col-5">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label for="exampleInputEmail1">Name</label>
-                  <input type="text" className="form-control" id="" aria-describedby="emailHelp" name="name"/>
+                  <input type="text" className="form-control" id="" aria-describedby="emailHelp" name="name"  onChange={e => setName(e.target.value)}/>
                 
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>

@@ -30,6 +30,7 @@ let handleChange = (e) => {
 let onSubmit = (e) => {
   e.preventDefault();
   console.log(formData);
+  e.target.reset();
 }
 
 
