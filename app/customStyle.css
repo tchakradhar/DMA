@@ -1,0 +1,46 @@
+button:focus {
+    /* outline: none;  */
+    outline: none !important;
+}
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+}
+a:hover {
+text-decoration: none !important;
+}
+.card{
+    width: 18rem;
+    border: none !important;;
+    border-radius: 12px !important;;
+     /* height:12em !important; */
+}
+.card-text{
+    padding:3em ;
+}
+.card1{
+    border-radius: 10px;
+    /* box-shadow: 0 10px 16px -3px rgb(236 64 122); */
+    box-shadow:0 10px 16px -3px rgb(68 153 99);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    /* background-color: rgb(236, 64, 122); */
+        /* background-image: linear-gradient(-45deg, rgb(236, 64, 122) 0%, rgb(236, 64, 122) -5%, rgb(255, 160, 0) 100%);  */
+        background-image: linear-gradient(-45deg, rgb(236, 64, 122) 0%, rgb(6 151 132) -5%, rgb(255, 160, 0) 100%);
+}
+.card2{
+    border-radius: 10px;
+    box-shadow: 0 10px 16px -3px rgb(0 150 136);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    /* background-color: rgb(236, 64, 122); */
+    background-image: linear-gradient(-45deg, rgb(0, 150, 136) 0%, rgb(0, 150, 136) 33%, rgb(104, 159, 56) 100%);
+}
+.card3{
+    border-radius: 10px;
+    /* box-shadow: 0 10px 16px -3px rgb(179 151 22); */
+    box-shadow: 0 10px 16px -3px rgb(0 150 136 / 61%);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    /* background-color: rgb(236, 64, 122); */
+    background-image: linear-gradient(-45deg, rgb(249, 168, 37) 0%, rgb(249, 168, 37) 17%, rgb(0, 188, 212) 100%);
+}
+.card-body h6{
+    color: white;
+}
