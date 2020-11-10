@@ -18,6 +18,7 @@ import Slide from '@material-ui/core/Slide';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import MUIDataTable from "mui-datatables";
 
 // datatables
 const useStyles = makeStyles((theme) => ({
@@ -39,7 +40,73 @@ const useStyles = makeStyles((theme) => ({
     return <Slide direction="up" ref={ref} {...props} />;
   });
 
+
+  const columns = [
+    {
+     name: "connectionName",
+     label: "Connection Name",
+     options: {
+      filter: true,
+      sort: true,
+     }
+    },
+    {
+     name: "hostname",
+     label: "Host Name",
+     options: {
+      filter: true,
+      sort: false,
+     }
+    },
+    {
+     name: "port",
+     label: "Port",
+     options: {
+      filter: true,
+      sort: false,
+     }
+    },
+    {
+     name: "userName",
+     label: "User Name",
+     options: {
+      filter: true,
+      sort: false,
+     }
+    },
+    {
+      name: "Connect",
+      options: {
+        filter: true,
+        sort: true,
+       
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <button onClick={() => window.alert(`Clicked "Connect" for row ${tableMeta.rowIndex}`)}
+            className="btn btn-primary">
+              Connect
+            </button>
+          );
+        }
+      }
+    },
+   ];
+    
+   const data = [
+    { connectionName: "MSSQL1", hostname: "localhost", port: "81", userName: "demo" },
+    { connectionName: "MSSQL1", hostname: "localhost", port: "81", userName: "demo" },
+    { connectionName: "MSSQL1", hostname: "localhost", port: "81", userName: "demo" },
+    { connectionName: "MSSQL1", hostname: "localhost", port: "81", userName: "demo" },
+    { connectionName: "MSSQL1", hostname: "localhost", port: "81", userName: "demo" },
+   ];
+    
+  //  const options = {
+  //    filterType: 'checkbox',
+  //  };
 function SourceTable(props, ref) {
+ 
+  
+
     const classes = useStyles();
     // const [checked, setChecked] = React.useState([0]);
     const handleClickOpen = () => {
@@ -125,7 +192,7 @@ function SourceTable(props, ref) {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Full Screen Model is implemented
+              Choose Connction
             </Typography>
             
           </Toolbar>
@@ -134,7 +201,13 @@ function SourceTable(props, ref) {
             <div className="container">
                 {/* <div className="col-1"></div> */}
                 <div className="col-12">
-                <table className="table  table-striped table-hover">
+                <MUIDataTable
+                  title={"Connection List"}
+                  data={data}
+                  columns={columns}
+                  // options={options}
+                />
+                {/* <table className="table  table-striped table-hover">
             <thead className="thead-dark">
                 <tr>
                 <th scope="col">S.No</th>
@@ -163,7 +236,7 @@ function SourceTable(props, ref) {
                 <td>@twitter</td>
                 </tr>
             </tbody>
-        </table>
+        </table> */}
                 </div>
 
             </div>
