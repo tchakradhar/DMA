@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
 import { PapperBlock } from 'dan-components';
@@ -63,22 +63,62 @@ const styles = theme => ({
   },
 });
 
-// deleteItem = () => {
+// handlebtnclick = () => {
 //   alert('hii');
 
-// };
+//  };
 //Advanced data tables start
-const columns = ["Name", "Host Name", "Port", "Database", "Username","Actions"];
+const columns = ["Name", "Host Name", "Port", "Database", "Username",
+{
+  name: "Actions",
+  options: {
+    filter: true,
+    sort: true,
+   
+    customBodyRender: (value, tableMeta, updateValue) => {
+      return (
+        <Icon onClick={() => window.alert(`Clicked "Edit" for row ${tableMeta.rowIndex}`)}>edit</Icon>
+        // <button onClick={() => window.alert(`Clicked "Edit" for row ${tableMeta.rowIndex}`)}>
+        //   Edit
+        // </button>
+      );
+    }
+  }
+},
+{
+  // icon : <Icon >edit</Icon>,
+  // name: "Delete",
+  options: {
+    filter: true,
+    sort: true,
+    // empty: true,
+    customBodyRender: (value, tableMeta, updateValue) => {
+      return (
+        <Icon onClick={() => {
+            const { data } = this.state;
+            data.shift();
+            this.setState({ data });
+          }} >delete_forever</Icon>
+        // <button onClick={() => {
+        //   const { data } = this.state;
+        //   data.shift();
+        //   this.setState({ data });
+        // }}>
+        //   Delete
+        // </button>
+      );
+    }
+  }
+}
+];
 const data = [
-  ["RS", "test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com", "5439", "test_sss", "admin",
- <div className="btn-group"><div ><Icon >edit</Icon></div><Icon>delete_forever</Icon><Icon>check_circle</Icon></div>],
+  ["RS", "test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com", "5439", "test_sss", "admin"],
   // <Icon>edit</Icon>,<Icon>delete_forever</Icon>,<Icon>offline_pin</Icon>
-  ["Demo_Job", "test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com", "5439", "test_sss_demo", "admin",
-  <div className="btn-group"><Icon >edit</Icon><Icon>delete_forever</Icon><Icon>check_circle</Icon></div>],
-  ["RS", "test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com", "5439", "demo", "admin",
-  <div className="btn-group"><Icon>edit</Icon><Icon>delete_forever</Icon><Icon>check_circle</Icon></div>],
-
+  ["Demo_Job", "test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com", "5439", "test_sss_demo", "admin"],
+  ["RS", "test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com", "5439", "demo", "admin"],
  ];
+{/* <div className="btn-group"><Icon >edit</Icon><Icon>delete_forever</Icon><Icon>check_circle</Icon></div> */}
+
  const options = {
   // filterType: 'checkbox',
   filterType: 'dropdown',

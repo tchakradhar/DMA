@@ -18,6 +18,8 @@ import Slide from '@material-ui/core/Slide';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+
+// datatables
 const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
@@ -36,14 +38,14 @@ const useStyles = makeStyles((theme) => ({
   const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
   });
+
 function SourceTable(props, ref) {
     const classes = useStyles();
     // const [checked, setChecked] = React.useState([0]);
     const handleClickOpen = () => {
         setOpen(true);
       };
-    
-      const handleClose = () => {
+    const handleClose = () => {
         setOpen(false);
       };
     
@@ -67,16 +69,17 @@ function SourceTable(props, ref) {
             <div className="col-5 search-results">
           
             <List className={classes.root}>
-                <ListItem  dense button >
+                <ListItem  dense button onClick={handleClickOpen}>
                         <ListItemIcon> 
                             <Checkbox
                             edge="start"
                             tabIndex={-1}
                             disableRipple
+                            className='checkbox'
                         /></ListItemIcon>
                         <ListItemText>Amazon RedShift</ListItemText>
                 </ListItem>
-                <ListItem  dense button >
+                <ListItem  dense button onClick={handleClickOpen}>
                         <ListItemIcon> 
                             <Checkbox
                             edge="start"
@@ -85,7 +88,7 @@ function SourceTable(props, ref) {
                         /></ListItemIcon>
                         <ListItemText>PostgreSQL</ListItemText>
                 </ListItem>
-                <ListItem  dense button >
+                <ListItem  dense button onClick={handleClickOpen}>
                         <ListItemIcon> 
                             <Checkbox
                             edge="start"
@@ -94,7 +97,7 @@ function SourceTable(props, ref) {
                         /></ListItemIcon>
                         <ListItemText>Oracle</ListItemText>
                 </ListItem>
-                <ListItem  dense button >
+                <ListItem  dense button onClick={handleClickOpen}>
                         <ListItemIcon> 
                             <Checkbox
                             edge="start"
@@ -127,15 +130,45 @@ function SourceTable(props, ref) {
             
           </Toolbar>
         </AppBar>
-        <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-          </ListItem>
-        </List>
+        <div className="row mx-0">
+            <div className="container">
+                {/* <div className="col-1"></div> */}
+                <div className="col-12">
+                <table className="table  table-striped table-hover">
+            <thead className="thead-dark">
+                <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                </tr>
+                <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+                </tr>
+            </tbody>
+        </table>
+                </div>
+
+            </div>
+        </div>
+        
       </Dialog>
      {/* {[0, 1, 2, 3].map((value) => {
         const labelId = `checkbox-list-label-${value}`;
