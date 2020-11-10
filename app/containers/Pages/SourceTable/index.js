@@ -19,6 +19,7 @@ import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import MUIDataTable from "mui-datatables";
+import Icon from '@material-ui/core/Icon';
 
 // datatables
 const useStyles = makeStyles((theme) => ({
@@ -132,10 +133,8 @@ function SourceTable(props, ref) {
       <PapperBlock title="Select Source Table " desc="">
       <div className="row">
           <div className="container ">
-          
             <div className="col-5 search-results">
-          
-            <List className={classes.root}>
+              <List className={classes.root}>
                 <ListItem  dense button onClick={handleClickOpen}>
                         <ListItemIcon> 
                             <Checkbox
@@ -184,85 +183,48 @@ function SourceTable(props, ref) {
                         <ListItemText >MYSQL</ListItemText>
                 </ListItem>
             </List>
-           
-            <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
-        <AppBar className={classes.appBar}>
-          <Toolbar>
-            <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-              <CloseIcon />
-            </IconButton>
-            <Typography variant="h6" className={classes.title}>
-              Choose Connction
-            </Typography>
-            
-          </Toolbar>
-        </AppBar>
-        <div className="row mx-0">
-            <div className="container">
-                {/* <div className="col-1"></div> */}
-                <div className="col-12">
-                <MUIDataTable
-                  title={"Connection List"}
-                  data={data}
-                  columns={columns}
-                  // options={options}
-                />
-                {/* <table className="table  table-striped table-hover">
-            <thead className="thead-dark">
-                <tr>
-                <th scope="col">S.No</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                </tr>
-                <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                </tr>
-            </tbody>
-        </table> */}
+              <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+                <AppBar className={classes.appBar}>
+                  <Toolbar>
+                    <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+                      <CloseIcon />
+                    </IconButton>
+                    <Typography variant="h6" className={classes.title}>
+                      Choose Connection
+                    </Typography>
+                    
+                  </Toolbar>
+                </AppBar>
+                <div className="row mx-0">
+                    <div className="container">
+                        {/* <div className="col-1"></div> */}
+                        <div className="col-12">
+                        <MUIDataTable
+                          title={"Connection List"}
+                          data={data}
+                          columns={columns}
+                          // options={options}
+                        />
+                        </div>
+
+                    </div>
                 </div>
-
-            </div>
-        </div>
-        
-      </Dialog>
-     {/* {[0, 1, 2, 3].map((value) => {
-        const labelId = `checkbox-list-label-${value}`;
-
-        return (
-          <ListItem  dense button >
-            <ListItemIcon>
-              <Checkbox
-                edge="start"
-                checked={checked.indexOf(value) !== -1}
-                tabIndex={-1}
-                disableRipple
-                inputProps={{ 'aria-labelledby': labelId }}
-              />
-            </ListItemIcon>
-            <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
-          </ListItem>
-        );
-      })} */}
+              </Dialog>
           </div>
-       </div>
+        </div>
+        <div className="row ml-4 mt-3">
+          <div className="container ">
+            <a href="" className=""><Button
+              variant="contained"
+              color="primary"
+              size="large"
+              className={classes.button}
+              endIcon={<Icon>send</Icon>}
+              >
+              Next
+            </Button></a> 
+          </div>
+        </div>
       </div>
       </PapperBlock>
      

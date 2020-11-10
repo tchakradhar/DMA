@@ -14,7 +14,8 @@ import {
   CreateConnection,
   JobCreation,
   Configuration,
-  SourceTable
+  SourceTable,
+  SelectSchemas
 } from '../pageListAsync';
 // import CreateConnection from '../Pages/CreateConnection';
 function Application(props) {
@@ -30,6 +31,7 @@ function Application(props) {
 
         <Route path="/app/dashboard" component={DashboardPage} />
         <Route path="/app/source" component={SourceTable} />
+        <Route path="/app/schemas" component={SelectSchemas} />
 
         
         {/* <Route path="/app/form" component={Form} />

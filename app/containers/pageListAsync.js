@@ -73,3 +73,8 @@ export const SourceTable = Loadable({
   loader: () => import('./Pages/SourceTable'),
   loading: Loading,
 });
+
+export const SelectSchemas = Loadable({
+  loader: () => import('./Pages/SelectSchemas'),
+  loading: Loading,
+});
