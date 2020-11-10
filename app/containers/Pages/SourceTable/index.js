@@ -20,6 +20,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import MUIDataTable from "mui-datatables";
 import Icon from '@material-ui/core/Icon';
+import SelectSchemas from '../SelectSchemas';
 
 // datatables
 const useStyles = makeStyles((theme) => ({
@@ -106,7 +107,16 @@ const useStyles = makeStyles((theme) => ({
   //  };
 function SourceTable(props, ref) {
  
+  const [showResultsSchema, setshowResultsSchema] = React.useState(false);
+  const [showResultsCreate, setShowResultsCreate] = React.useState(true);
   
+  
+  const onClick = () => {
+    // alert('jii');
+    setshowResultsSchema(true);
+    setShowResultsCreate(false);
+    
+  }
 
     const classes = useStyles();
     // const [checked, setChecked] = React.useState([0]);
@@ -130,7 +140,7 @@ function SourceTable(props, ref) {
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
       </Helmet>
-      <PapperBlock title="Select Source Table " desc="">
+      { showResultsCreate ?  <PapperBlock title="Select Source Table " desc="">
       <div className="row">
           <div className="container ">
             <div className="col-5 search-results">
@@ -214,19 +224,22 @@ function SourceTable(props, ref) {
         </div>
         <div className="row ml-4 mt-3">
           <div className="container ">
-            <a href="" className=""><Button
+            <a ><Button
               variant="contained"
               color="primary"
               size="large"
               className={classes.button}
               endIcon={<Icon>send</Icon>}
+              onClick={onClick}
               >
               Next
             </Button></a> 
           </div>
         </div>
       </div>
-      </PapperBlock>
+      </PapperBlock>: null }
+      { showResultsSchema ? <SelectSchemas /> : null }
+     
      
     </div>
   );

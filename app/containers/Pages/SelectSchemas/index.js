@@ -1,9 +1,9 @@
-import React from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
 import { PapperBlock } from 'dan-components';
-
+import React,{useState}from 'react';
 function SelectSchemas() {
+   
   const title = brand.name + ' - Dashboard';
   const description = brand.desc;
   return (
@@ -16,9 +16,9 @@ function SelectSchemas() {
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
       </Helmet>
-      <PapperBlock title="Select SCHEMAS" desc="">
+      <PapperBlock title="Select Schemas" desc="">
         <div className="container" >
-            <div className="row">
+            <div className="row search-results">
                
                 <p>SelectSchemas works</p>
                 
