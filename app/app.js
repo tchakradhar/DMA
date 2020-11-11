@@ -20,9 +20,11 @@ import 'customStyle.css';
 import App from 'containers/App';
 import './styles/layout/base.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 // import 'bootstrap/dist/js/bootstrap.bundle.min';
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
+import 'react-dual-listbox/lib/react-dual-listbox.css';
 
 // Load the favicon and the .htaccess file
 // Load the favicon and the .htaccess file
@@ -32,6 +34,7 @@ import 'file-loader?name=.htaccess!./.htaccess'; // eslint-disable-line
 /* eslint-enable import/no-unresolved, import/extensions */
 
 import configureStore from './redux/configureStore';
+import 'react-dual-listbox/lib/react-dual-listbox.css';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
