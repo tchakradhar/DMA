@@ -37,7 +37,7 @@ function intersection(a, b) {
   return a.filter((value) => b.indexOf(value) !== -1);
 }
 
-  function SelectSchemas() {
+  function SelectTables() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([]);
   const [left, setLeft] = React.useState([0, 1, 2, 3]);
@@ -97,7 +97,7 @@ function intersection(a, b) {
                   inputProps={{ 'aria-labelledby': labelId }}
                 />
               </ListItemIcon>
-              <ListItemText id={labelId} primary={`Schema ${value + 1}`} />
+              <ListItemText id={labelId} primary={`Tables ${value + 1}`} />
             </ListItem>
           );
         })}
@@ -107,7 +107,7 @@ function intersection(a, b) {
   );
 
   return (
-    <PapperBlock title="Select Schemas" desc="">
+    <PapperBlock title="Select Tables" desc="">
     <Grid container spacing={2} justify="center" alignItems="center" className={classes.root}>
      
       <Grid item>{customList(left)}</Grid>
@@ -158,7 +158,7 @@ function intersection(a, b) {
       <Grid item>{customList(right)}</Grid>
       
     </Grid>
-    <div className="row ml-5" style={{marginLeft:'7em'}}>
+    <div className="row " style={{marginLeft:'7em'}}>
          
             <a ><Button
               variant="contained"
@@ -166,7 +166,7 @@ function intersection(a, b) {
               size="large"
               className={classes.button}
               endIcon={<Icon>send</Icon>}
-              // onClick={onClick}
+            //   onClick={onClick}
               >
               Next
             </Button></a> 
@@ -236,4 +236,4 @@ function intersection(a, b) {
 //   }
 // }
 
-export default SelectSchemas;
+export default SelectTables;

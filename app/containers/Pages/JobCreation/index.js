@@ -5,7 +5,6 @@ import { PapperBlock } from 'dan-components';
 import SourceTable from '../SourceTable';
 import Button from '@material-ui/core/Button';
 
-
 function JobCreation() {
   
   const handleSubmit = (evt) => {

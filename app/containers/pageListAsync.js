@@ -78,3 +78,8 @@ export const SelectSchemas = Loadable({
   loader: () => import('./Pages/SelectSchemas'),
   loading: Loading,
 });
+
+export const SelectTables = Loadable({
+  loader: () => import('./Pages/SelectTables'),
+  loading: Loading,
+});

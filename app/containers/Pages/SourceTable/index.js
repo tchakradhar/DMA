@@ -41,7 +41,27 @@ const useStyles = makeStyles((theme) => ({
   const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
   });
-
+  
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   try{
+  //     axios.post(`http://localhost:4000/api/reg`,{email:this.state.email, password : this.state.password})
+  //     .then(res=>{
+  //          console.log(res);
+  //          console.log(res.data);
+  //          if(res.code == 200){
+  //            const sourceTable = res.data;
+  //          }
+  //          else{
+  //            console.log(res.message);
+  //          }
+  //     });
+  //   }
+  //   catch(err){
+  //     console.log(err+'error');
+  //   }
+   
+  // }
 
   const columns = [
     {
@@ -94,13 +114,18 @@ const useStyles = makeStyles((theme) => ({
     },
    ];
     
-   const data = [
+   const sourceTable = 
+   { code :200, message: 'success', data : 
+   [
+  
     { connectionName: "MSSQL1", hostname: "localhost", port: "81", userName: "demo" },
     { connectionName: "MSSQL1", hostname: "localhost", port: "81", userName: "demo" },
     { connectionName: "MSSQL1", hostname: "localhost", port: "81", userName: "demo" },
     { connectionName: "MSSQL1", hostname: "localhost", port: "81", userName: "demo" },
     { connectionName: "MSSQL1", hostname: "localhost", port: "81", userName: "demo" },
-   ];
+   ]
+  }
+   
     
   //  const options = {
   //    filterType: 'checkbox',
@@ -211,7 +236,7 @@ function SourceTable(props, ref) {
                         <div className="col-12">
                         <MUIDataTable
                           title={"Connection List"}
-                          data={data}
+                          data={sourceTable.data}
                           columns={columns}
                           // options={options}
                         />

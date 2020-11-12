@@ -111,13 +111,17 @@ const columns = ["Name", "Host Name", "Port", "Database", "Username",
   }
 }
 ];
-const data = [
-  ["RS", "test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com", "5439", "test_sss", "admin"],
-  // <Icon>edit</Icon>,<Icon>delete_forever</Icon>,<Icon>offline_pin</Icon>
-  ["Demo_Job", "test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com", "5439", "test_sss_demo", "admin"],
-  ["RS", "test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com", "5439", "demo", "admin"],
- ];
-{/* <div className="btn-group"><Icon >edit</Icon><Icon>delete_forever</Icon><Icon>check_circle</Icon></div> */}
+const configurationData =
+ { code :200, message: 'success', data : 
+  [
+    ["RS", "test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com", "5439", "test_sss", "admin"],
+    // <Icon>edit</Icon>,<Icon>delete_forever</Icon>,<Icon>offline_pin</Icon>
+    ["Demo_Job", "test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com", "5439", "test_sss_demo", "admin"],
+    ["RS", "test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com", "5439", "demo", "admin"],
+   ]
+} 
+
+//  <div className="btn-group"><Icon >edit</Icon><Icon>delete_forever</Icon><Icon>check_circle</Icon></div>
 
  const options = {
   // filterType: 'checkbox',
@@ -183,7 +187,7 @@ class Configuration extends React.Component {
             {value === 0 && <TabContainer>
                 <MUIDataTable
                   title={"Amazon RedShift"}
-                  data={data}
+                  data={configurationData.data}
                   columns={columns}
                   options={options}
                 />
@@ -191,7 +195,7 @@ class Configuration extends React.Component {
             {value === 1 && <TabContainer>
                 <MUIDataTable
                   title={"Oracle"}
-                  data={data}
+                  data={configurationData.data}
                   columns={columns}
                   options={options}
                 />
@@ -199,7 +203,7 @@ class Configuration extends React.Component {
             {value === 2 && <TabContainer>
                 <MUIDataTable
                   title={"MS SQL Server"}
-                  data={data}
+                  data={configurationData.data}
                   columns={columns}
                   options={options}
                 />
@@ -207,14 +211,14 @@ class Configuration extends React.Component {
             {value === 3 && <TabContainer> 
               <MUIDataTable
                   title={"MySQL"}
-                  data={data}
+                  data={configurationData.data}
                   columns={columns}
                   options={options}
                 /></TabContainer>}
             {value === 4 && <TabContainer>
                 <MUIDataTable
                   title={"Snowflake"}
-                  data={data}
+                  data={configurationData.data}
                   columns={columns}
                   options={options}
                 />
