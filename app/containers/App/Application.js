@@ -35,7 +35,7 @@ function Application(props) {
         <Route path="/app/schemas" component={SelectSchemas} />
         <Route path="/app/tables" component={SelectTables} />
 
-        
+
         {/* <Route path="/app/form" component={Form} />
         <Route path="/app/table" component={Table} />
         <Route path="/app/page-list" component={Parent} />

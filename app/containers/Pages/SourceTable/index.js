@@ -1,4 +1,4 @@
-import React,{useState}from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
 import { PapperBlock } from 'dan-components';
@@ -18,143 +18,151 @@ import Slide from '@material-ui/core/Slide';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import MUIDataTable from "mui-datatables";
+import MUIDataTable from 'mui-datatables';
 import Icon from '@material-ui/core/Icon';
 import SelectSchemas from '../SelectSchemas';
 
 // datatables
 const useStyles = makeStyles((theme) => ({
-    root: {
-      width: '100%',
-      maxWidth: 360,
-      backgroundColor: theme.palette.background.paper,
-    },
-    appBar: {
-        position: 'relative',
-      },
-      title: {
-        marginLeft: theme.spacing(2),
-        flex: 1,
-      },
-  }));
-  
-  const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  });
-  
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   try{
-  //     axios.post(`http://localhost:4000/api/reg`,{email:this.state.email, password : this.state.password})
-  //     .then(res=>{
-  //          console.log(res);
-  //          console.log(res.data);
-  //          if(res.code == 200){
-  //            const sourceTable = res.data;
-  //          }
-  //          else{
-  //            console.log(res.message);
-  //          }
-  //     });
-  //   }
-  //   catch(err){
-  //     console.log(err+'error');
-  //   }
-   
-  // }
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+  },
+  appBar: {
+    position: 'relative',
+  },
+  title: {
+    marginLeft: theme.spacing(2),
+    flex: 1,
+  },
+}));
 
-  const columns = [
-    {
-     name: "connectionName",
-     label: "Connection Name",
-     options: {
+const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
+
+// handleSubmit = (e) => {
+//   e.preventDefault();
+//   try{
+//     axios.post(`http://localhost:4000/api/reg`,{email:this.state.email, password : this.state.password})
+//     .then(res=>{
+//          console.log(res);
+//          console.log(res.data);
+//          if(res.code == 200){
+//            const sourceTable = res.data;
+//          }
+//          else{
+//            console.log(res.message);
+//          }
+//     });
+//   }
+//   catch(err){
+//     console.log(err+'error');
+//   }
+
+// }
+
+const columns = [
+  {
+    name: 'connectionName',
+    label: 'Connection Name',
+    options: {
       filter: true,
       sort: true,
-     }
-    },
-    {
-     name: "hostname",
-     label: "Host Name",
-     options: {
+    }
+  },
+  {
+    name: 'hostname',
+    label: 'Host Name',
+    options: {
       filter: true,
       sort: false,
-     }
-    },
-    {
-     name: "port",
-     label: "Port",
-     options: {
+    }
+  },
+  {
+    name: 'port',
+    label: 'Port',
+    options: {
       filter: true,
       sort: false,
-     }
-    },
-    {
-     name: "userName",
-     label: "User Name",
-     options: {
+    }
+  },
+  {
+    name: 'userName',
+    label: 'User Name',
+    options: {
       filter: true,
       sort: false,
-     }
-    },
-    {
-      name: "Connect",
-      options: {
-        filter: true,
-        sort: true,
-       
-        customBodyRender: (value, tableMeta, updateValue) => {
-          return (
-            <button onClick={() => window.alert(`Clicked "Connect" for row ${tableMeta.rowIndex}`)}
-            className="btn btn-primary">
+    }
+  },
+  {
+    name: 'Connect',
+    options: {
+      filter: true,
+      sort: true,
+
+      customBodyRender: (value, tableMeta, updateValue) => (
+        <button
+          onClick={() => window.alert(`Clicked "Connect" for row ${tableMeta.rowIndex}`)}
+          className="btn btn-primary"
+        >
               Connect
-            </button>
-          );
-        }
-      }
-    },
-   ];
-    
-   const sourceTable = 
-   { code :200, message: 'success', data : 
+        </button>
+      )
+    }
+  },
+];
+
+const sourceTable = {
+  code: 200,
+  message: 'success',
+  data:
    [
-  
-    { connectionName: "MSSQL1", hostname: "localhost", port: "81", userName: "demo" },
-    { connectionName: "MSSQL1", hostname: "localhost", port: "81", userName: "demo" },
-    { connectionName: "MSSQL1", hostname: "localhost", port: "81", userName: "demo" },
-    { connectionName: "MSSQL1", hostname: "localhost", port: "81", userName: "demo" },
-    { connectionName: "MSSQL1", hostname: "localhost", port: "81", userName: "demo" },
+
+     {
+       connectionName: 'MSSQL1', hostname: 'localhost', port: '81', userName: 'demo'
+     },
+     {
+       connectionName: 'MSSQL1', hostname: 'localhost', port: '81', userName: 'demo'
+     },
+     {
+       connectionName: 'MSSQL1', hostname: 'localhost', port: '81', userName: 'demo'
+     },
+     {
+       connectionName: 'MSSQL1', hostname: 'localhost', port: '81', userName: 'demo'
+     },
+     {
+       connectionName: 'MSSQL1', hostname: 'localhost', port: '81', userName: 'demo'
+     },
    ]
-  }
-   
-    
-  //  const options = {
-  //    filterType: 'checkbox',
-  //  };
+};
+
+
+//  const options = {
+//    filterType: 'checkbox',
+//  };
 function SourceTable(props, ref) {
- 
   const [showResultsSchema, setshowResultsSchema] = React.useState(false);
   const [showResultsCreate, setShowResultsCreate] = React.useState(true);
-  
-  
+
+
   const onClick = () => {
     // alert('jii');
     setshowResultsSchema(true);
     setShowResultsCreate(false);
-    
-  }
+  };
 
-    const classes = useStyles();
-    // const [checked, setChecked] = React.useState([0]);
-    const handleClickOpen = () => {
-        setOpen(true);
-      };
-    const handleClose = () => {
-        setOpen(false);
-      };
-    
-    const title = brand.name + ' - Dashboard';
-    const description = brand.desc;
-    const [open, setOpen] = React.useState(false);
+  const classes = useStyles();
+  // const [checked, setChecked] = React.useState([0]);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const title = brand.name + ' - Dashboard';
+  const description = brand.desc;
+  const [open, setOpen] = React.useState(false);
   return (
     <div>
       <Helmet>
@@ -165,107 +173,114 @@ function SourceTable(props, ref) {
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
       </Helmet>
-      { showResultsCreate ?  <PapperBlock title="Select Source Table " desc="">
-      <div className="row">
-          <div className="container ">
-            <div className="col-5 search-results">
-              <List className={classes.root}>
-                <ListItem  dense button onClick={handleClickOpen}>
-                        <ListItemIcon> 
-                            <Checkbox
-                            edge="start"
-                            tabIndex={-1}
-                            disableRipple
-                            className='checkbox'
-                        /></ListItemIcon>
-                        <ListItemText>Amazon RedShift</ListItemText>
-                </ListItem>
-                <ListItem  dense button onClick={handleClickOpen}>
-                        <ListItemIcon> 
-                            <Checkbox
-                            edge="start"
-                            tabIndex={-1}
-                            disableRipple
-                        /></ListItemIcon>
-                        <ListItemText>PostgreSQL</ListItemText>
-                </ListItem>
-                <ListItem  dense button onClick={handleClickOpen}>
-                        <ListItemIcon> 
-                            <Checkbox
-                            edge="start"
-                            tabIndex={-1}
-                            disableRipple
-                        /></ListItemIcon>
-                        <ListItemText>Oracle</ListItemText>
-                </ListItem>
-                <ListItem  dense button onClick={handleClickOpen}>
-                        <ListItemIcon> 
-                            <Checkbox
-                            edge="start"
-                            tabIndex={-1}
-                            disableRipple
-                        /></ListItemIcon>
-                        <ListItemText>MS SQL Server</ListItemText>
-                </ListItem>
-                <ListItem  dense button  onClick={handleClickOpen}>
-                        <ListItemIcon> 
-                            <Checkbox
-                            edge="start"
-                            tabIndex={-1}
-                            disableRipple
-                            // onClick={OpenMysqModel}
-                        /></ListItemIcon>
-                        <ListItemText >MYSQL</ListItemText>
-                </ListItem>
-            </List>
-              <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
-                <AppBar className={classes.appBar}>
-                  <Toolbar>
-                    <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-                      <CloseIcon />
-                    </IconButton>
-                    <Typography variant="h6" className={classes.title}>
+      { showResultsCreate ? (
+        <PapperBlock title="Select Source Table " desc="">
+          <div className="row">
+            <div className="container ">
+              <div className="col-5 search-results">
+                <List className={classes.root}>
+                  <ListItem dense button onClick={handleClickOpen}>
+                    <ListItemIcon>
+                      <Checkbox
+                        edge="start"
+                        tabIndex={-1}
+                        disableRipple
+                        className="checkbox"
+                      />
+                    </ListItemIcon>
+                    <ListItemText>Amazon RedShift</ListItemText>
+                  </ListItem>
+                  <ListItem dense button onClick={handleClickOpen}>
+                    <ListItemIcon>
+                      <Checkbox
+                        edge="start"
+                        tabIndex={-1}
+                        disableRipple
+                      />
+                    </ListItemIcon>
+                    <ListItemText>PostgreSQL</ListItemText>
+                  </ListItem>
+                  <ListItem dense button onClick={handleClickOpen}>
+                    <ListItemIcon>
+                      <Checkbox
+                        edge="start"
+                        tabIndex={-1}
+                        disableRipple
+                      />
+                    </ListItemIcon>
+                    <ListItemText>Oracle</ListItemText>
+                  </ListItem>
+                  <ListItem dense button onClick={handleClickOpen}>
+                    <ListItemIcon>
+                      <Checkbox
+                        edge="start"
+                        tabIndex={-1}
+                        disableRipple
+                      />
+                    </ListItemIcon>
+                    <ListItemText>MS SQL Server</ListItemText>
+                  </ListItem>
+                  <ListItem dense button onClick={handleClickOpen}>
+                    <ListItemIcon>
+                      <Checkbox
+                        edge="start"
+                        tabIndex={-1}
+                        disableRipple
+                      />
+                    </ListItemIcon>
+                    <ListItemText>MYSQL</ListItemText>
+                  </ListItem>
+                </List>
+                <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+                  <AppBar className={classes.appBar}>
+                    <Toolbar>
+                      <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+                        <CloseIcon />
+                      </IconButton>
+                      <Typography variant="h6" className={classes.title}>
                       Choose Connection
-                    </Typography>
-                    
-                  </Toolbar>
-                </AppBar>
-                <div className="row mx-0">
+                      </Typography>
+
+                    </Toolbar>
+                  </AppBar>
+                  <div className="row mx-0">
                     <div className="container">
-                        {/* <div className="col-1"></div> */}
-                        <div className="col-12">
+                      {/* <div className="col-1"></div> */}
+                      <div className="col-12">
                         <MUIDataTable
-                          title={"Connection List"}
+                          title="Connection List"
                           data={sourceTable.data}
                           columns={columns}
-                          // options={options}
                         />
-                        </div>
+                      </div>
 
                     </div>
-                </div>
-              </Dialog>
-          </div>
-        </div>
-        <div className="row ml-4 mt-3">
-          <div className="container ">
-            <a ><Button
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.button}
-              endIcon={<Icon>send</Icon>}
-              onClick={onClick}
-              >
+                  </div>
+                </Dialog>
+              </div>
+            </div>
+            <div className="row ml-4 mt-3">
+              <div className="container ">
+                <a>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    className={classes.button}
+                    endIcon={<Icon>send</Icon>}
+                    onClick={onClick}
+                  >
               Next
-            </Button></a> 
+                  </Button>
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      </PapperBlock>: null }
+        </PapperBlock>
+      ) : null }
       { showResultsSchema ? <SelectSchemas /> : null }
-     
-     
+
+
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
 import { PapperBlock } from 'dan-components';
@@ -38,7 +38,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 //           <p>Configuration  work</p>
 //       </div>
 //       </PapperBlock>
-     
+
 //     </div>
 //   );
 // }
@@ -67,38 +67,38 @@ const styles = theme => ({
 //   alert('hii');
 
 //  };
-//Advanced data tables start
-const columns = ["Name", "Host Name", "Port", "Database", "Username",
-{
-  name: "Actions",
-  options: {
-    filter: true,
-    sort: true,
-   
-    customBodyRender: (value, tableMeta, updateValue) => {
-      return (
+// Advanced data tables start
+const columns = ['Name', 'Host Name', 'Port', 'Database', 'Username',
+  {
+    name: 'Actions',
+    options: {
+      filter: true,
+      sort: true,
+
+      customBodyRender: (value, tableMeta, updateValue) => (
         <Icon onClick={() => window.alert(`Clicked "Edit" for row ${tableMeta.rowIndex}`)}>edit</Icon>
         // <button onClick={() => window.alert(`Clicked "Edit" for row ${tableMeta.rowIndex}`)}>
         //   Edit
         // </button>
-      );
+      )
     }
-  }
-},
-{
+  },
+  {
   // icon : <Icon >edit</Icon>,
   // name: "Delete",
-  options: {
-    filter: true,
-    sort: true,
-    // empty: true,
-    customBodyRender: (value, tableMeta, updateValue) => {
-      return (
+    options: {
+      filter: true,
+      sort: true,
+      // empty: true,
+      customBodyRender: (value, tableMeta, updateValue) => (
         <Icon onClick={() => {
-            const { data } = this.state;
-            data.shift();
-            this.setState({ data });
-          }} >delete_forever</Icon>
+          const { data } = this.state;
+          data.shift();
+          this.setState({ data });
+        }}
+        >
+delete_forever
+        </Icon>
         // <button onClick={() => {
         //   const { data } = this.state;
         //   data.shift();
@@ -106,35 +106,37 @@ const columns = ["Name", "Host Name", "Port", "Database", "Username",
         // }}>
         //   Delete
         // </button>
-      );
+      )
     }
   }
-}
 ];
-const configurationData =
- { code :200, message: 'success', data : 
+const configurationData = {
+  code: 200,
+  message: 'success',
+  data:
   [
-    ["RS", "test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com", "5439", "test_sss", "admin"],
+    ['RS', 'test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com', '5439', 'test_sss', 'admin'],
     // <Icon>edit</Icon>,<Icon>delete_forever</Icon>,<Icon>offline_pin</Icon>
-    ["Demo_Job", "test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com", "5439", "test_sss_demo", "admin"],
-    ["RS", "test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com", "5439", "demo", "admin"],
-   ]
-} 
+    ['Demo_Job', 'test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com', '5439', 'test_sss_demo', 'admin'],
+    ['RS', 'test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com', '5439', 'demo', 'admin'],
+  ]
+};
 
 //  <div className="btn-group"><Icon >edit</Icon><Icon>delete_forever</Icon><Icon>check_circle</Icon></div>
 
- const options = {
+const options = {
   // filterType: 'checkbox',
   filterType: 'dropdown',
-    responsive: 'stacked',
+  responsive: 'stacked',
 };
-//Advanced data tables end
+// Advanced data tables end
 
 class Configuration extends React.Component {
   state = {
     value: 0,
     open: false,
   };
+
   handleClickOpen = () => {
     this.setState({ open: true });
   };
@@ -155,17 +157,17 @@ class Configuration extends React.Component {
     const { open } = this.state;
     return (
       <div>
-      <div className={classes.root}  style={{'borderRadius':'5%'}}>
-        <Helmet>
-         <title>{title}</title>
-         <meta name="description" content={description} />
-         <meta property="og:title" content={title} />
-         <meta property="og:description" content={description} />
-         <meta property="twitter:title" content={title} />
-         <meta property="twitter:description" content={description} />
-       </Helmet>
+        <div className={classes.root} style={{ borderRadius: '5%' }}>
+          <Helmet>
+            <title>{title}</title>
+            <meta name="description" content={description} />
+            <meta property="og:title" content={title} />
+            <meta property="og:description" content={description} />
+            <meta property="twitter:title" content={title} />
+            <meta property="twitter:description" content={description} />
+          </Helmet>
           <PapperBlock title="Available Connections " desc="">
-            <AppBar position="static" color="default"  style={{alignItems:'center'}}>
+            <AppBar position="static" color="default" style={{ alignItems: 'center' }}>
               <Tabs
                 value={value}
                 onChange={this.handleChange}
@@ -173,7 +175,7 @@ class Configuration extends React.Component {
                 textColor="secondary"
                 variant="scrollable"
                 scrollButtons="auto"
-                style={{outline:'none'}}
+                style={{ outline: 'none' }}
               >
                 <Tab label="Amazon RedShift" />
                 <Tab label="Oracle" />
@@ -184,51 +186,62 @@ class Configuration extends React.Component {
                 <Tab label="Item Seven" /> */}
               </Tabs>
             </AppBar>
-            {value === 0 && <TabContainer>
+            {value === 0 && (
+              <TabContainer>
                 <MUIDataTable
-                  title={"Amazon RedShift"}
+                  title="Amazon RedShift"
                   data={configurationData.data}
                   columns={columns}
                   options={options}
                 />
-              </TabContainer>}
-            {value === 1 && <TabContainer>
+              </TabContainer>
+            )}
+            {value === 1 && (
+              <TabContainer>
                 <MUIDataTable
-                  title={"Oracle"}
+                  title="Oracle"
                   data={configurationData.data}
                   columns={columns}
                   options={options}
                 />
-              </TabContainer>}
-            {value === 2 && <TabContainer>
+              </TabContainer>
+            )}
+            {value === 2 && (
+              <TabContainer>
                 <MUIDataTable
-                  title={"MS SQL Server"}
+                  title="MS SQL Server"
                   data={configurationData.data}
                   columns={columns}
                   options={options}
                 />
-              </TabContainer>}
-            {value === 3 && <TabContainer> 
-              <MUIDataTable
-                  title={"MySQL"}
-                  data={configurationData.data}
-                  columns={columns}
-                  options={options}
-                /></TabContainer>}
-            {value === 4 && <TabContainer>
+              </TabContainer>
+            )}
+            {value === 3 && (
+              <TabContainer>
                 <MUIDataTable
-                  title={"Snowflake"}
+                  title="MySQL"
                   data={configurationData.data}
                   columns={columns}
                   options={options}
                 />
-              </TabContainer>}
+              </TabContainer>
+            )}
+            {value === 4 && (
+              <TabContainer>
+                <MUIDataTable
+                  title="Snowflake"
+                  data={configurationData.data}
+                  columns={columns}
+                  options={options}
+                />
+              </TabContainer>
+            )}
             {/* {value === 5 && <TabContainer>Item Six</TabContainer>}
             {value === 6 && <TabContainer>Item Seven</TabContainer>} */}
           </PapperBlock>
 
+        </div>
       </div>
-    </div> 
     );
   }
 }
