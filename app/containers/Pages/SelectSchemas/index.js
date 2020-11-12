@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
   },
   paper: {
-    width: 200,
-    height: 230,
+    width: 350,
+    height: 450,
     overflow: 'auto',
   },
   button: {
@@ -96,7 +96,7 @@ function intersection(a, b) {
                   inputProps={{ 'aria-labelledby': labelId }}
                 />
               </ListItemIcon>
-              <ListItemText id={labelId} primary={`List item ${value + 1}`} />
+              <ListItemText id={labelId} primary={`Schema ${value + 1}`} />
             </ListItem>
           );
         })}
@@ -106,7 +106,9 @@ function intersection(a, b) {
   );
 
   return (
+    <PapperBlock title="Select Schemas" desc="">
     <Grid container spacing={2} justify="center" alignItems="center" className={classes.root}>
+     
       <Grid item>{customList(left)}</Grid>
       <Grid item>
         <Grid container direction="column" alignItems="center">
@@ -153,7 +155,9 @@ function intersection(a, b) {
         </Grid>
       </Grid>
       <Grid item>{customList(right)}</Grid>
+      
     </Grid>
+    </PapperBlock>
   );
 }
 

@@ -20,7 +20,8 @@ import 'customStyle.css';
 import App from 'containers/App';
 import './styles/layout/base.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+// import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+// import "font-awesome/css/font-awesome.css";
 // import 'bootstrap/dist/js/bootstrap.bundle.min';
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
