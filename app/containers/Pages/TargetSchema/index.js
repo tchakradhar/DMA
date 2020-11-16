@@ -20,6 +20,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import MUIDataTable from 'mui-datatables';
 import Icon from '@material-ui/core/Icon';
+import SelectedSchemaView from '../SelectedSchemaView';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -112,15 +113,16 @@ const columns = [
      ]
   };
 function TargetSchema(props, ref) {
-//   const [showResults, setShowResults] = React.useState(false);
-//   const [showResultsCreate, setShowResultsCreate] = React.useState(true);
-
-//   const onClick = () => {
-//     setShowResults(true);
-//     setShowResultsCreate(false);
-//   };
-  const [showResultsSchema, setshowResultsSchema] = React.useState(false);
+  const [showResults, setShowResults] = React.useState(false);
   const [showResultsCreate, setShowResultsCreate] = React.useState(true);
+
+  const onClick = () => {
+    setShowResults(true);
+    setShowResultsCreate(false);
+  };
+
+//   const [showResultsSchema, setshowResultsSchema] = React.useState(false);
+//   const [showResultsCreate, setShowResultsCreate] = React.useState(true);
   const classes = useStyles();
   const handleClickOpen = () => {
     setOpen(true);
@@ -142,7 +144,7 @@ function TargetSchema(props, ref) {
         <meta property="twitter:description" content={description} />
       </Helmet>
      
-        <PapperBlock title="Select Target " desc="" className="job-create">
+      { showResultsCreate ? (   <PapperBlock title="Select Target Schema" desc="" className="job-create">
           <div className="row">
             <div className="container">
             <div className="col-5 search-results">
@@ -227,7 +229,7 @@ function TargetSchema(props, ref) {
                     size="large"
                     className={classes.button}
                     endIcon={<Icon>send</Icon>}
-                    // onClick={onClick}
+                    onClick={onClick}
                   >
               Next
                   </Button>
@@ -236,7 +238,9 @@ function TargetSchema(props, ref) {
             </div>
           </div>
         </PapperBlock>
-       
+        ) : null }
+        { showResults ? <SelectedSchemaView /> : null }
+  
 
     </div>
   );

@@ -17,7 +17,8 @@ import {
   SourceTable,
   SelectSchemas,
   SelectTables,
-  TargetSchema
+  TargetSchema,
+  SelectedSchemaView
 } from '../pageListAsync';
 // import CreateConnection from '../Pages/CreateConnection';
 function Application(props) {
@@ -36,6 +37,7 @@ function Application(props) {
         <Route path="/app/schemas" component={SelectSchemas} />
         <Route path="/app/tables" component={SelectTables} />
         <Route path="/app/target" component={TargetSchema} />
+        <Route path="/app/selectedschema" component={SelectedSchemaView} />
 
         
 

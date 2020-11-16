@@ -89,3 +89,8 @@ export const TargetSchema = Loadable({
   loading: Loading,
 });
 
+
+export const SelectedSchemaView = Loadable({
+  loader: () => import('./Pages/SelectedSchemaView'),
+  loading: Loading,
+});
