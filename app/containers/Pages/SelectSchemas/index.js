@@ -182,7 +182,7 @@ function SelectSchemas() {
         <Grid item>{customList(right)}</Grid>
 
       </Grid>
-      <div className="row ml-5" style={{ marginLeft: '7em' }}>
+      <div className="row " style={{ marginLeft: '7em' }}>
 
         <a>
           <Button

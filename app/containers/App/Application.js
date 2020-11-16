@@ -16,7 +16,8 @@ import {
   Configuration,
   SourceTable,
   SelectSchemas,
-  SelectTables
+  SelectTables,
+  TargetSchema
 } from '../pageListAsync';
 // import CreateConnection from '../Pages/CreateConnection';
 function Application(props) {
@@ -34,7 +35,9 @@ function Application(props) {
         <Route path="/app/source" component={SourceTable} />
         <Route path="/app/schemas" component={SelectSchemas} />
         <Route path="/app/tables" component={SelectTables} />
+        <Route path="/app/target" component={TargetSchema} />
 
+        
 
         {/* <Route path="/app/form" component={Form} />
         <Route path="/app/table" component={Table} />

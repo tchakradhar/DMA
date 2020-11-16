@@ -14,6 +14,7 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 // Dual box using functional components
 import Icon from '@material-ui/core/Icon';
+import TargetSchema from '../TargetSchema';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +39,14 @@ function intersection(a, b) {
 }
 
 function SelectTables() {
+  const [showResults, setShowResults] = React.useState(false);
+  const [showResultsCreate, setShowResultsCreate] = React.useState(true);
+
+  const onClick = () => {
+    setShowResults(true);
+    setShowResultsCreate(false);
+  };
+  
   const classes = useStyles();
   const [checked, setChecked] = React.useState([]);
   const [left, setLeft] = React.useState([0, 1, 2, 3]);
@@ -107,7 +116,8 @@ function SelectTables() {
   );
 
   return (
-    <PapperBlock title="Select Tables" desc="">
+    <div>
+   { showResultsCreate ? ( <PapperBlock title="Select Tables" desc="">
       <Grid container spacing={2} justify="center" alignItems="center" className={classes.root}>
 
         <Grid item>{customList(left)}</Grid>
@@ -167,14 +177,16 @@ function SelectTables() {
             size="large"
             className={classes.button}
             endIcon={<Icon>send</Icon>}
-            //   onClick={onClick}
+              onClick={onClick}
           >
               Next
           </Button>
         </a>
 
       </div>
-    </PapperBlock>
+    </PapperBlock> ): null }
+    { showResults ? <TargetSchema /> : null }
+    </div>
   );
 }
 

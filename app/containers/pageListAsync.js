@@ -83,3 +83,9 @@ export const SelectTables = Loadable({
   loader: () => import('./Pages/SelectTables'),
   loading: Loading,
 });
+
+export const TargetSchema = Loadable({
+  loader: () => import('./Pages/TargetSchema'),
+  loading: Loading,
+});
+
