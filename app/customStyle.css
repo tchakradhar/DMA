@@ -1,3 +1,7 @@
+/* global styles */
+.danger{
+    background-color: rgb(220, 0, 78) !important;
+}
 button:focus {
     /* outline: none;  */
     outline: none !important;
@@ -47,3 +51,4 @@ text-decoration: none !important;
 .next-btn-margin{
     margin-left: 169px;
 }
+
