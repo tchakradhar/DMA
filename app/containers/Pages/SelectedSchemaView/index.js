@@ -36,8 +36,8 @@ const useRowStyles = makeStyles({
       column,
       datatype,
       history: [
-        { date: '2020-01-05', customerId: '11091700'},
-        { date: '2020-01-02', customerId: 'Anonymous' },
+        { column: 'emp_name', datatype: 'varchar'},
+        { column: 'dept_name', datatype: 'varchar' },
       ],
     };
   }
@@ -93,19 +93,32 @@ const useRowStyles = makeStyles({
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {row.history.map((historyRow) => (
+                  {row.history.map((historyRow) => (
                       <TableRow key={historyRow.id}>
                         <TableCell component="th" scope="row">
-                            <Input value={historyRow.column} type="text" onChange={handleChange} name="column"></Input>
+                            <Input value={historyRow.column} type="text"  name="column"></Input>
                           {/* {historyRow.date} */}
                         </TableCell>
                         <TableCell>
-                            <Input value={historyRow.datatype} type="text" onChange={handleChange} name="datatype"></Input>
+                            <Input value={historyRow.datatype} type="text" name="datatype"></Input>
                         </TableCell>
                        
                        
                       </TableRow>
                     ))}
+                    {/* {row.history.map((historyRow) => (
+                      <TableRow key={historyRow.id}>
+                        <TableCell component="th" scope="row">
+                            <Input value={historyRow.column} type="text"  name="column"></Input>
+                           {historyRow.date} 
+                        </TableCell>
+                        <TableCell>
+                            <Input value={historyRow.datatype} type="text" name="datatype"></Input>
+                        </TableCell>
+                       
+                       
+                      </TableRow>
+                    ))} */}
                     <TableRow>
                     <TableCell>
                             {/* <Input type="submit" variant="contained" color="primary" value="Update"></Input> */}
@@ -131,20 +144,18 @@ const useRowStyles = makeStyles({
   }
   Row.propTypes = {
     row: PropTypes.shape({
-    //   calories: PropTypes.number.isRequired,
-    //   carbs: PropTypes.number.isRequired,
-    //   fat: PropTypes.number.isRequired,
+      column: PropTypes.string.isRequired,
+      datatype: PropTypes.string.isRequired,
+     
       history: PropTypes.arrayOf(
         PropTypes.shape({
-        //   amount: PropTypes.number.isRequired,
-          column: PropTypes.string,
-          datatype: PropTypes.string,
-        }),
-      ),
-    //   column: PropTypes.string.isRequired,
-    //   datatype: PropTypes.string.isRequired,
-    //   protein: PropTypes.number.isRequired,
-    }).isRequired,
+         
+          column: PropTypes.string.isRequired,
+          datatype: PropTypes.string.isRequired
+        })
+      ).isRequired,
+     
+    }).isRequired
   };
 
   const rows = [
@@ -184,7 +195,7 @@ const useRowStyles = makeStyles({
         <meta property="twitter:description" content={description} />
       </Helmet>
       { showResultsCreate ? (
-        <PapperBlock title=" Selcted Schema List " desc="" className="job-create">
+        <PapperBlock title=" Selected Schema List " desc="" className="job-create">
           <div className="row">
             <div className="container">
                 <div className="col-6">
@@ -193,6 +204,8 @@ const useRowStyles = makeStyles({
                             <TableHead>
                             <TableRow>
                                 <TableCell />
+                                <TableCell>S.No</TableCell>
+
                                 <TableCell>Source Schema</TableCell>
                                 <TableCell align="right">Source Table Name</TableCell>
                                 
