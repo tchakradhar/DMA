@@ -30,11 +30,11 @@ const useRowStyles = makeStyles({
     },
   });
 
-  function createData(id, column, datatype) {
+  function createData(id, schemaName, tableName) {
     return {
         id,
-      column,
-      datatype,
+        schemaName,
+        tableName,
       history: [
         { column: 'emp_name', datatype: 'varchar'},
         { column: 'dept_name', datatype: 'varchar' },
@@ -42,23 +42,29 @@ const useRowStyles = makeStyles({
     };
   }
   function Row(props) {
-    let [formData, setTarget] = useState({
-       
-        column : '',
-        datatype : ''
-      });
 
-      let handleChange = (e) => {
-        let name = e.target.name;
-        let value = e.target.value;
-        formData[name] = value;
-        setTarget(formData);
-      }
-      
     const { row } = props;
+    console.log('data', props.row.history[0].column);
     const [open, setOpen] = React.useState(false);
     const classes = useRowStyles();
+
+    let [formData, setFormData] = useState({
+       
+      column: props.row.history[0].column,
+      datatype: props.row.history[0].datatype
+    });
   
+    let handleChange = (e) => {
+      setFormData({
+        column: e.target.name.value,
+        datatype: e.target.name.value,
+        // let name = e.target.name;
+        // let value = e.target.value;
+        // formData[name] = value;
+        // setTarget(formData);
+      });
+    };
+
     return (
       <React.Fragment>
         <TableRow className={classes.root}>
@@ -70,8 +76,8 @@ const useRowStyles = makeStyles({
           <TableCell component="th" scope="row">
             {row.id}
           </TableCell>
-          <TableCell align="right">{row.column}</TableCell>
-          <TableCell align="right">{row.datatype}</TableCell>
+          <TableCell align="right">{row.schemaName}</TableCell>
+          <TableCell align="right">{row.tableName}</TableCell>
           
           {/* <TableCell align="right">{row.fat}</TableCell>
           <TableCell align="right">{row.carbs}</TableCell>
@@ -96,11 +102,11 @@ const useRowStyles = makeStyles({
                   {row.history.map((historyRow) => (
                       <TableRow key={historyRow.id}>
                         <TableCell component="th" scope="row">
-                            <Input value={historyRow.column} type="text"  name="column"></Input>
+                            <Input  type="text"  name="column" onChange={handleChange} value={formData.column}></Input>
                           {/* {historyRow.date} */}
                         </TableCell>
                         <TableCell>
-                            <Input value={historyRow.datatype} type="text" name="datatype"></Input>
+                            <Input  type="text" name="datatype"  onChange={handleChange} value={formData.datatype}></Input>
                         </TableCell>
                        
                        
@@ -144,19 +150,24 @@ const useRowStyles = makeStyles({
   }
   Row.propTypes = {
     row: PropTypes.shape({
-      column: PropTypes.string.isRequired,
-      datatype: PropTypes.string.isRequired,
+      schemaName: PropTypes.string.isRequired,
+      tableName: PropTypes.string.isRequired,
      
       history: PropTypes.arrayOf(
         PropTypes.shape({
          
-          column: PropTypes.string.isRequired,
-          datatype: PropTypes.string.isRequired
+          column: PropTypes.any,
+          datatype: PropTypes.any
         })
       ).isRequired,
      
     }).isRequired
   };
+
+
+
+
+
 
   const rows = [
     createData(1,'migration', 'configuration'),
