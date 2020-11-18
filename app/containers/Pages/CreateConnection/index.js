@@ -3,7 +3,12 @@ import { Helmet } from 'react-helmet';
 import brand from 'dan-api/dummy/brand';
 import { PapperBlock } from 'dan-components';
 import ReactDOM from 'react-dom';
-
+import Input from '@material-ui/core/Input';
+import { FormControl } from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
 
 function CreateConnection() {
  
@@ -11,7 +16,7 @@ function CreateConnection() {
   const description = brand.desc;
 //  const[name,SetName]=useState('')
 //  const[email,SetEmail]=useState('')
- let [formData, setAccount] = useState({
+ let [htmlFormData, setAccount] = useState({
   connectionName: '',
   hostName: '',
   dataName: '',
@@ -24,12 +29,12 @@ function CreateConnection() {
 let handleChange = (e) => {
   let name = e.target.name;
   let value = e.target.value;
-  formData[name] = value;
-  setAccount(formData);
+  htmlFormData[name] = value;
+  setAccount(htmlFormData);
 }
 let onSubmit = (e) => {
   e.preventDefault();
-  console.log(formData);
+  console.log(htmlFormData);
   e.target.reset();
 }
 
@@ -50,76 +55,79 @@ let onSubmit = (e) => {
       </Helmet>
       <PapperBlock title="Create New Connection  " desc="">
       <div>
-      {/* <form className="form " onSubmit={onSubmit}>
-                <div className="form-group row">
-                    <label htmlFor="" className="control-label col-md-3">
-                        Name
-                    </label>
-                    <div className="col-md-5">
-                        <input name="name"   onChange={handleChange}  type="text" className="form-control"/>
-                    </div>
-                </div> 
-                <div className="form-group row">
-                    <label htmlFor="" className="control-label col-md-3">Email</label>
-                    <div className="form-group col-md-5">
-                        <input name="email"   onChange={handleChange} type="text" className="form-control"/>
-                    </div>
-                </div>
-                <button type="submit" className="btn btn-primary mr-3">Submit</button>
-                <button type="reset" className="btn btn-primary">Cancel</button>
-                
-            </form> */}
-            <form onSubmit={onSubmit} className="form ">
+      
+            <form onSubmit={onSubmit} className="htmlForm ">
               <div className="row">
                 <div className="col-6">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Connection Name</label>
-                      <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter Connection Name" name="connectionName"  onChange={handleChange}/>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Host Name</label>
-                      <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter Host Name" name="hostName"  onChange={handleChange}/>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Database Name</label>
-                      <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter Database Name" name="dataName"  onChange={handleChange}/>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">User Name</label>
-                      <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter User Name" name="userName"  onChange={handleChange}/>
-                    </div>
+                    <FormControl className="col-12">
+                      <InputLabel htmlFor="my-input">Connection Name</InputLabel>
+                      <Input id="" aria-describedby="my-helper-text"  type="text" className="htmlForm-control" 
+                       name="connectionName"  onChange={handleChange} required/>
+                    </FormControl>
+                    <FormControl className="col-12">
+                      <InputLabel htmlFor="my-input">Host Name</InputLabel>
+                      <Input id="" aria-describedby="my-helper-text"  type="text" className="htmlForm-control" 
+                       name="hostName"  onChange={handleChange} required/>
+                    </FormControl>
+                    <FormControl className="col-12">
+                      <InputLabel htmlFor="my-input">Database Name</InputLabel>
+                      <Input id="" aria-describedby="my-helper-text"  type="text" className="htmlForm-control" 
+                       name="dataName"  onChange={handleChange} required/>
+                    </FormControl>
+                    <FormControl className="col-12">
+                      <InputLabel htmlFor="my-input">User Name</InputLabel>
+                      <Input id="" aria-describedby="my-helper-text"  type="text" className="htmlForm-control" 
+                       name="userName"  onChange={handleChange} required/>
+                    </FormControl>
                 </div>
                 <div className="col-6">
-                  <div class="form-group">
-                      <label for="exampleFormControlSelect1">Select Type</label>
-                      <select class="form-control" id="exampleFormControlSelect1"  onChange={handleChange} name="type">
-                        <option>Amazon RedShift</option>
-                        <option>Oracle</option>
-                        <option>MS SQL Server</option>
-                        <option>MySQL</option>
-                        <option>Snow Flake</option>
-                      </select>
+                    <FormControl className="col-12">
+                      <InputLabel htmlFor="my-input">Select Type</InputLabel>
+                      <Select onChange={handleChange} name="type" required>
+                        <MenuItem value="">
+                          <em>None</em>
+                        </MenuItem>
+                        <MenuItem value="Amazon RedShift">Amazon RedShift</MenuItem>
+                        <MenuItem value="Oracle">Oracle</MenuItem>
+                        <MenuItem value="MS SQL Server">MS SQL Server</MenuItem>
+                        <MenuItem value="MySQL">MySQL</MenuItem>
+                        <MenuItem value="Snow_Flake">Snow Flake</MenuItem>
+                      </Select>
+                    </FormControl>
+                    <FormControl className="col-12">
+                      <InputLabel htmlFor="my-input">Port</InputLabel>
+                      <Input id="" aria-describedby="my-helper-text"  type="text" className="htmlForm-control" 
+                       name="port"  onChange={handleChange} required/>
+                    </FormControl>
+                    <FormControl className="col-12">
+                      <InputLabel htmlFor="my-input">Password</InputLabel>
+                      <Input id="" aria-describedby="my-helper-text"  type="password" className="htmlForm-control" 
+                       name="password"  onChange={handleChange} required/>
+                    </FormControl>
+                    <div className="htmlForm-group mt-3 ">
+                          <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            size="large"
+                            className="px-5"
+                          >
+                              Submit
+                          </Button>
+                          <Button
+                            variant="contained"
+                            className="danger ml-3 px-5 text-white"
+                            size="large"
+                            type="reset"
+                          >
+                              Cancel
+                          </Button>
                     </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Port </label>
-                      <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter Port" name="port"  onChange={handleChange}/>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Password"  onChange={handleChange} name="password"/>
-                    </div>
-                    <div class="form-group ">
-                      <button type="submit" className="btn btn-primary mr-3 mt-4">Submit</button>
-                      <button type="reset" className="btn btn-primary mt-4">Cancel</button>
-                    </div>
-                   
                 </div>
               </div>
             </form>
- 
       </div>
       </PapperBlock>
-     
     </div>
   );
 }

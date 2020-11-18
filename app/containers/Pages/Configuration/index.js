@@ -67,69 +67,7 @@ const styles = theme => ({
 //   alert('hii');
 
 //  };
-// Advanced data tables start
-const columns = ['Name', 'Host Name', 'Port', 'Database', 'Username',
-  {
-    name: 'Actions',
-    options: {
-      filter: true,
-      sort: true,
 
-      customBodyRender: (value, tableMeta, updateValue) => (
-        <Icon onClick={() => window.alert(`Clicked "Edit" for row ${tableMeta.rowIndex}`)}>edit</Icon>
-        // <button onClick={() => window.alert(`Clicked "Edit" for row ${tableMeta.rowIndex}`)}>
-        //   Edit
-        // </button>
-      )
-    }
-  },
-  {
-  // icon : <Icon >edit</Icon>,
-  // name: "Delete",
-    options: {
-      filter: true,
-      sort: true,
-      // empty: true,
-      customBodyRender: (value, tableMeta, updateValue) => (
-        <Icon onClick={() => {
-          const { data } = this.state;
-          data.shift();
-          this.setState({ data });
-        }}
-        >
-delete_forever
-        </Icon>
-        // <button onClick={() => {
-        //   const { data } = this.state;
-        //   data.shift();
-        //   this.setState({ data });
-        // }}>
-        //   Delete
-        // </button>
-      )
-    }
-  }
-];
-const configurationData = {
-  code: 200,
-  message: 'success',
-  data:
-  [
-    ['RS', 'test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com', '5439', 'test_sss', 'admin'],
-    // <Icon>edit</Icon>,<Icon>delete_forever</Icon>,<Icon>offline_pin</Icon>
-    ['Demo_Job', 'test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com', '5439', 'test_sss_demo', 'admin'],
-    ['RS', 'test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com', '5439', 'demo', 'admin'],
-  ]
-};
-
-//  <div className="btn-group"><Icon >edit</Icon><Icon>delete_forever</Icon><Icon>check_circle</Icon></div>
-
-const options = {
-  // filterType: 'checkbox',
-  filterType: 'dropdown',
-  responsive: 'stacked',
-};
-// Advanced data tables end
 
 class Configuration extends React.Component {
   state = {
@@ -155,6 +93,79 @@ class Configuration extends React.Component {
     const { classes } = this.props;
     const { value } = this.state;
     const { open } = this.state;
+
+    // Advanced data tables start
+const columns = ['Id','Name', 'Host Name', 'Port', 'Database', 'Username',
+{
+  name: 'Actions',
+  options: {
+    filter: true,
+    sort: true,
+
+    customBodyRender: (value, tableMeta, updateValue) => (
+      <Icon onClick={() => window.alert(`Clicked "Edit" for row ${tableMeta.rowData}`)}>edit</Icon>
+      // <button onClick={() => window.alert(`Clicked "Edit" for row ${tableMeta.rowIndex}`)}>
+      //   Edit
+      // </button>
+    )
+  }
+},
+{
+// icon : <Icon >edit</Icon>,
+// name: "Delete",
+  options: {
+    filter: true,
+    sort: true,
+    // empty: true,
+    customBodyRender: (value, tableMeta, updateValue) => (
+      <Icon onClick={() => {
+        const { data } = this.state;
+        // data.shift();
+        this.setState({ data });
+      }}
+      >
+delete_forever
+      </Icon>
+      // <button onClick={() => {
+      //   const { data } = this.state;
+      //   data.shift();
+      //   this.setState({ data });
+      // }}>
+      //   Delete
+      // </button>
+    )
+  }
+}
+];
+const configurationData = {
+code: 200,
+message: 'success',
+data:
+[
+
+  [1,'RS', 'test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com', '5439', 'test_sss', 'admin'],
+  // <Icon>edit</Icon>,<Icon>delete_forever</Icon>,<Icon>offline_pin</Icon>
+  [2,'Demo_Job', 'test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com', '5439', 'test_sss_demo', 'admin'],
+  [3,'RS', 'test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com', '5439', 'demo', 'admin'],
+]
+};
+ 
+// const dataObj =  {
+//   code: 200,
+//   message: 'success',
+//   data:
+
+// [{id:1, name: 'RS', hostname:'test-sss.cmx3j5mpskak.us-east-1.redshift.amazonaws.com', port:'5439', username:'test_sss', password:'admin'}]
+// }
+//  <div className="btn-group"><Icon >edit</Icon><Icon>delete_forever</Icon><Icon>check_circle</Icon></div>
+
+const options = {
+// filterType: 'checkbox',
+filterType: 'dropdown',
+responsive: 'stacked',
+};
+// Advanced data tables end
+
     return (
       <div>
         <div className={classes.root} style={{ borderRadius: '5%' }}>

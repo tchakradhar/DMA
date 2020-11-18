@@ -4,6 +4,9 @@ import brand from 'dan-api/dummy/brand';
 import { PapperBlock } from 'dan-components';
 import Button from '@material-ui/core/Button';
 import SourceTable from '../SourceTable';
+import Input from '@material-ui/core/Input';
+import { FormControl } from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
 
 function JobCreation() {
   const handleSubmit = (evt) => {
@@ -41,20 +44,51 @@ function JobCreation() {
               <div className="col-3" />
               <div className="col-5">
                 <form onSubmit={handleSubmit}>
-                  <div className="form-group">
+                  {/* <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Name</label>
                     <input type="text" className="form-control" id="" aria-describedby="emailHelp" name="name" onChange={e => setName(e.target.value)} />
 
-                  </div>
-                  <button type="submit" className="btn btn-primary">Submit</button>
-                  <button type="reset" className="btn btn-primary ml-2">Cancel</button>
-                  <a className="next-btn-margin btn btn-primary " onClick={onClick}>
+                  </div> */}
+                   <FormControl className="col-12">
+                      <InputLabel htmlFor="my-input"> Name</InputLabel>
+                      <Input id="" aria-describedby="my-helper-text"  type="text" className="htmlForm-control" 
+                       name="name"  onChange={e => setName(e.target.value)} required/>
+                    </FormControl>
+                    <div className="htmlForm-group mt-3 ">
+                          <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            size="large"
+                            className="px-4"
+                          >
+                              Submit
+                          </Button>
+                          <Button
+                            variant="contained"
+                            className="danger ml-3 px-4 text-white"
+                            size="large"
+                            type="reset"
+                          >
+                              Cancel
+                          </Button>
+                          <Button
+                            variant="contained"
+                            className=" px-4 text-white "
+                            size="large"
+                            color="primary"
+                            onClick={onClick}
+                            style ={{marginLeft : '4em'}}
+                          >
+                              Next
+                          </Button>
+                    </div>
+                         
+                  {/* <a className="next-btn-margin btn btn-primary " onClick={onClick}>
                     {' '}
 Next
-                  </a>
-                  {/* <Button variant="outlined" className="next-btn-margin btn btn-primary "  color="primary" >
-               Next
-              </Button> */}
+                  </a> */}
+                
                 </form>
               </div>
               <div className="col-3" />

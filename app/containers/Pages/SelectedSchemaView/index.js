@@ -174,7 +174,7 @@ import { ContentState } from 'draft-js';
       };
       
       // const [targetFormData, setTargetFormData] = useState({
-      //   ttname: targetrows.ttname
+      //   ttname: 'targetrows.ttname'
        
       // });
       // alert(targetrows.ttname);
@@ -256,7 +256,7 @@ import { ContentState } from 'draft-js';
                               {/* <TableCell align="right">{row.ttname}</TableCell> */}
                               <TableCell align="right">
                                 {/* <Input  type="text" name="ttname" onChange={handleTargetData} 
-                                 value={row.ttname}/> */}
+                                 value={targetFormData.ttname}/> */}
                                    <Input  type="text" name="ttname"  
                                  value={row.ttname}/>
                               </TableCell>
